@@ -1,0 +1,23 @@
+// Margin
+$m-0: 5px;
+
+// Padding
+$p-0: 5px;
+
+// Font size
+$fs-0: 18px;
+
+// Font weight
+$fw-normal: normal;
+$fw-bold: 600;
+$fw-medium: 500;
+$fw-regular: 400;
+$fw-light: 300;
+
+// Break points
+$breakpoints: (
+  "extra-large": 1200px,
+  "large": 992px,
+  "medium": 768px,
+  "small": "576px",
+);

@@ -1,0 +1,373 @@
+/* App container */
+.app-container {
+  margin-top: 120px;
+  background: #f5f5f5;
+}
+.app-content {
+  padding-top: 36px;
+}
+/* Navbar category */
+.category {
+  padding: 5px 0 10px;
+  border-radius: 2px;
+  background: var(--white-color);
+}
+.category__heading {
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  color: var(--text-color);
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.category__heading-icon {
+  font-size: 1rem;
+  margin-top: -1px;
+  margin-right: 6px;
+}
+.category__list {
+  margin-left: 14px;
+}
+.category__item {
+  position: relative;
+}
+.category__item::before {
+  content: "";
+  position: absolute;
+  top: 1;
+  left: 2px;
+  right: 16px;
+  border-top: 1px solid #e1e1e1;
+}
+.category__item:first-child::before {
+  display: none;
+}
+.category__item--active .category__item-link {
+  color: var(--secondary-color);
+}
+.category__item--active .category__item-link::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 2px;
+  transform: translateY(-50%);
+  border-width: 4px;
+  border-style: solid;
+  border-color: transparent transparent transparent red;
+}
+.category__item-link {
+  position: relative;
+  right: 0;
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-color);
+  padding: 10px 12px;
+  text-decoration: none;
+  transition: right linear 0.2s;
+  text-transform: uppercase;
+}
+.category__item-link:hover {
+  right: -4px;
+  color: var(--secondary-color);
+}
+/* Home filter */
+.home-filter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  border-radius: 2px;
+  background: rgba(0, 0, 0, 0.04);
+}
+.home-filter__left {
+  display: flex;
+  align-items: center;
+}
+.home-filter__label {
+  font-size: 0.9rem;
+  color: #555;
+  margin-right: 14px;
+}
+.home-filter-btn {
+  min-width: 90px;
+  margin-right: 8px;
+  color: var(--text-color);
+  background: var(--white-color);
+}
+.home-filter-btn:hover {
+  background: #f5f5f5;
+  transform: all 0.5s;
+}
+.home-filter-btn--primary {
+  color: var(--white-color);
+  background: var(--secondary-color);
+}
+.home-filter-btn--primary:hover {
+  background: #f3674c;
+}
+.select-input {
+  position: relative;
+  padding: 0 12px;
+  min-width: 200px;
+  height: 34px;
+  border-radius: 2px;
+  background: var(--white-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.select-input:hover .select-input__list {
+  display: block;
+}
+.select-input__label {
+  font-size: 0.9rem;
+}
+.select-input__icon {
+  font-size: 0.9rem;
+  color: rgba(131, 131, 131);
+  position: relative;
+  top: 1px;
+}
+.select-input__list {
+  display: none;
+  position: absolute;
+  top: 38px;
+  left: 0;
+  right: 0;
+  border-radius: 2px;
+  background: var(--white-color);
+  z-index: 1;
+}
+.select-input__list::before {
+  content: "";
+  position: absolute;
+  top: -14px;
+  left: 0;
+  right: 0;
+  height: 15px;
+}
+.select-input__item:hover .select-input__link {
+  color: var(--secondary-color);
+}
+.select-input__link {
+  display: block;
+  padding: 14px 14px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+.home-filter__paginate {
+  display: flex;
+  align-items: center;
+}
+.home-filter__paginate-num {
+  font-size: 0.9rem;
+  color: var(--text-color);
+  margin-right: 22px;
+}
+.home-filter__paginate-current {
+  color: var(--secondary-color);
+}
+.home-filter__paginate-control {
+  border-radius: 2px;
+  overflow: hidden;
+  display: flex;
+  width: 72px;
+  height: 36px;
+  box-shadow: 0 1px 3px #c9c9c9;
+}
+.home-filter__paginate-btn {
+  flex: 1;
+  background: var(--white-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+.home-filter__paginate-btn:first-child {
+  border-right: 1px solid #eee;
+}
+.home-filter__paginate-btn--disable {
+  background: #f9f9f9;
+  cursor: default;
+}
+.home-filter__paginate-btn--disable .home-filter__paginate-icon {
+  color: #ccc;
+}
+.home-filter__paginate-icon {
+  color: #555;
+  font-size: 1.1rem;
+}
+
+/* Product list */
+.home-product {
+  margin-bottom: 10px;
+}
+.home-product__item {
+  display: block;
+  text-decoration: none;
+  margin-top: 10px;
+  position: relative;
+  background: var(--white-color);
+  border-radius: 2px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  transition: transform linear 0.1s;
+  will-change: transform;
+}
+.home-product__item:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 1px 20px 0 rgba(0, 0, 0, 0.05);
+}
+.home-product__item-img {
+  padding-top: 100%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: top center;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+.home-product__item-info {
+  padding: 10px 0 8px;
+}
+.home-product__item-name {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--text-color);
+  padding: 0 10px 6px;
+  line-height: 1.4;
+  height: 2.8rem;
+  overflow: hidden;
+  display: block;
+  /* white-space: nowrap;
+  text-overflow: ellipsis; */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.home-product__item-price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+.home-product__item-price-old {
+  font-size: 0.85rem;
+  color: #666;
+  text-decoration: line-through;
+  margin-left: 10px;
+}
+.home-product__item-price-current {
+  font-size: 0.9rem;
+  color: var(--secondary-color);
+  margin-left: 10px;
+}
+.home-product__item-action {
+  display: flex;
+  align-items: center;
+  margin: 6px 10px;
+}
+.home-product__item-action-heart {
+  font-size: 0.8rem;
+}
+.home-product__item-action-heart--hearted .home-product__item-heart-icon-fill {
+  display: inline-block;
+}
+.home-product__item-action-heart--hearted .home-product__item-heart-icon-empty {
+  display: none;
+}
+/* .home-product__item-heart-icon-empty,
+.home-product__item-heart-icon-fill {
+  font-size: 0.8rem;
+} */
+.home-product__item-heart-icon-fill {
+  display: none;
+  color: #f53d2f;
+}
+.home-product__item-action-rating {
+  font-size: 0.8rem;
+  transform: scale(0.8);
+  transform-origin: right;
+  color: #d5d5d5;
+  margin-left: auto;
+}
+.home-product__item-action-star--gold {
+  color: #ffce3e;
+}
+.home-product__item-action-sold {
+  font-size: 0.8rem;
+  color: var(--text-color);
+  margin-left: 6px;
+}
+.home-product__item-origin {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 3px 10px 0;
+}
+.home-product__item-origin-brand,
+.home-product__item-origin-name {
+  color: #595959;
+  font-size: 0.8rem;
+  font-weight: 300;
+}
+.home-product__item-favorite {
+  position: absolute;
+  top: 10px;
+  left: -4px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--secondary-color);
+  /* Ăn theo màu chủ đạo của block */
+  background: currentColor;
+  line-height: 1.6;
+  padding-right: 6px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+.home-product__item-favorite::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  border-top: 3px solid currentColor;
+  border-left: 3px solid transparent;
+  filter: brightness(60%);
+}
+.home-product__item-favorite span {
+  color: var(--white-color);
+}
+.home-product__item-favorite--check {
+  color: var(--white-color);
+  margin: 0 2px 0 5px;
+}
+.home-product__item-sale-off {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 36px;
+  color: rgb(255, 216, 64);
+  background: currentColor;
+  text-align: center;
+  line-height: 1.1;
+  border-top-right-radius: 2px;
+}
+.home-product__item-sale-off::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  border-width: 0 20px 6px;
+  border-style: solid;
+  border-color: transparent currentColor transparent currentColor;
+}
+.home-product__item-sale-off-percent {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--secondary-color);
+}
+.home-product__item-sale-off-label {
+  display: block;
+  font-size: 1rem;
+  color: var(--white-color);
+}

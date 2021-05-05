@@ -1,0 +1,11 @@
+@mixin text($color, $fs, $fw) {
+  color: $color;
+  font: {
+    size: $fs;
+    weight: $fw;
+  }
+}
+@mixin button($color, $fs, $fw) {
+  @include text($color, $fs, $fw);
+  color: $color;
+}

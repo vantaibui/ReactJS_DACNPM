@@ -1,0 +1,24 @@
+// Base
+@import "./Base/reset";
+@import "./Base/normalized";
+
+// Helpers
+@import "./Helpers/color";
+@import "./Helpers/variable";
+
+// Layout
+// Admin
+@import "./Pages/Admin/sidebar";
+@import "./Pages/Admin/main-content";
+// Seller
+@import "./Pages/Seller/sidebar-seller";
+@import "./Pages/Seller/main-content-seller";
+@import "./Layout/Responsive/Seller/home-seller";
+// User
+
+// Components
+@import "./Components/button";
+
+// Pages
+@import "./Pages/User/sliderNotification";
+@import "./Pages/User/detail";
