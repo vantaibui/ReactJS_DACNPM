@@ -2,14 +2,12 @@
 
 import { FETCH_PRODUCTS } from "../Types/ActionType";
 
-let initialState = [
-  { id: 1, name: "abc", price: 2000 },
-  { id: 2, name: "abc", price: 2000 },
-];
+let initialState = [];
 
 const ProductReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_PRODUCTS: {
+      state = action.payload;
       return [...state];
     }
     default:

@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
 import { Route } from "react-router-dom";
 import Header from "../../Layouts/Admin/Header";
-import Footer from "../../Layouts/User/Footer/Footer";
 
 const AdminLayout = ({ ...props }) => {
   return (

@@ -11,6 +11,7 @@ import SellerTemplate from "./App/Templates/Seller";
 import AdminTemplate from "./App/Templates/Admin";
 
 import routes from "./App/Routes";
+import LoginPage from "./App/Pages/User/LoginPage";
 
 const App = () => {
   let showRoutes = (routes) => {
@@ -43,6 +44,14 @@ const App = () => {
               Component={route.main}
             />
           );
+        } else {
+          template = (
+            <Route
+              exact={route.exact}
+              path={route.path}
+              component={route.component}
+            />
+          );
         }
         return template;
       });
@@ -61,14 +70,17 @@ const App = () => {
     <BrowserRouter>
       <Fragment>
         <Switch>
-          {/* <Route exact path="/" component={HomePage} />
+          <Route exact path="/" component={HomePage} />
+
           <HomeTemplate exact path="/detail/:id" Component={Detail} />
 
           <SellerTemplate exact path="/seller" Component={SellerPage} />
 
-          <AdminTemplate exact path="/admin" Component={AdminPage} /> */}
+          <AdminTemplate exact path="/admin" Component={AdminPage} />
 
-          {showRoutes(routes)}
+          <Route exact path="/login" component={LoginPage} />
+
+          {/* {showRoutes(routes)} */}
         </Switch>
       </Fragment>
     </BrowserRouter>
@@ -76,3 +88,39 @@ const App = () => {
 };
 
 export default App;
+
+// import React, { useEffect } from "react";
+// import { connect } from "react-redux";
+// import LoginPage from "./App/Pages/User/LoginPage";
+
+// import { actionFetchProductsRequest } from "./App/Redux/Actions/index";
+// import "./App/Sass/Main.scss";
+
+// const App = (props) => {
+//   console.log(props.productReducer);
+
+//   useEffect(() => {
+//     props.fetchProducts();
+//   }, []);
+//   return (
+//     <div>
+//       <LoginPage />
+//     </div>
+//   );
+// };
+
+// const mapStateToProps = (state) => {
+//   return {
+//     productReducer: state.ProductReducer,
+//   };
+// };
+
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     fetchProducts: () => {
+//       return dispatch(actionFetchProductsRequest());
+//     },
+//   };
+// };
+
+// export default connect(mapStateToProps, mapDispatchToProps)(App);

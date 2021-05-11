@@ -457,6 +457,13 @@
   height: 50px;
   color: white;
 }
+.header__logo-icon {
+  fill: var(--white-color);
+  width: 190px;
+  height: 42px;
+  margin-top: -12px;
+  margin-right: -18px;
+}
 /* Header search */
 .header__search {
   flex: 1;
@@ -835,6 +842,11 @@
   font-size: 0.9rem;
   font-weight: 400;
   color: #333333;
+}
+.view-cart__btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .view-cart__btn:hover {
   background: #f05d40;

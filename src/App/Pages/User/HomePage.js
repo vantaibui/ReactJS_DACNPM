@@ -15,7 +15,7 @@ const HomePage = (props) => {
   console.log(products);
   return (
     <>
-      <Header />
+      {/* <Header /> */}
 
       <div className="app-container">
         <div className="grid">
@@ -37,7 +37,7 @@ const HomePage = (props) => {
         </div>
       </div>
 
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

@@ -5,6 +5,8 @@
 // Helpers
 @import "./Helpers/color";
 @import "./Helpers/variable";
+@import "./Helpers/mixin";
+@import "./Helpers/extend";
 
 // Layout
 // Admin
@@ -22,3 +24,6 @@
 // Pages
 @import "./Pages/User/sliderNotification";
 @import "./Pages/User/detail";
+@import "./Pages/User/authentication-form";
+@import "./Pages/User/cart";
+@import "./Pages/User/payment";

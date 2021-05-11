@@ -4,7 +4,7 @@ const HeaderContent = () => {
   return (
     <header>
       <h2>
-        <label htmlFor="sidebar-toggle">
+        <label className="label" htmlFor="sidebar-toggle">
           <span className="fa fa-bars" />
         </label>
         Dashboard
