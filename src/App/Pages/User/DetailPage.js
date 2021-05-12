@@ -1,119 +1,58 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 
 // import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
 
-import shoes from "../../Assets/Images/User/shoes1.png";
-import shoes3 from "../../Assets/Images/User/shoes3.png";
+import * as Actions from "../../Redux/Actions";
+import * as Types from "../../Redux/Types/ActionType";
 
-// const setting = {
-//   dots: true,
-//   infinite: true,
-//   speed: 500,
-//   slidesToShow: 4,
-//   slidesToScroll: 4,
-// };
+const Detail = (props) => {
+  let { productDetail } = props;
 
-const changeImageSrc = (img) => {
-  document.querySelector(".product__img").src = img;
-};
+  useEffect(() => {
+    let value = props.match.params.id;
+    props.onProductDetail(value);
+  }, []);
 
-const Detail = () => {
+  let onAddProductToCart = (product) => {
+    props.onAddProductToCart(product);
+    console.log(product);
+  };
+
   return (
-    <>
-      {/* <Header /> */}
-      <div
-        className="product-container"
-        // style={{ backgroundImage: `url(../Images/User/bg.jpg)` }}
+    <div style={{ marginTop: "140px" }}>
+      <button
+        onClick={() => {
+          onAddProductToCart(productDetail);
+        }}
       >
-        <div className="grid">
-          <div className="grid__row">
-            <div className="col-column-2">
-              <div className="product">
-                <ul className="product__thumbnail">
-                  <li
-                    className="thumbnail-item"
-                    onMouseOver={() => {
-                      changeImageSrc(shoes);
-                    }}
-                  >
-                    <img
-                      src={shoes}
-                      alt="abc"
-                      className="thumbnail-item__img"
-                    />
-                  </li>
-                  <li
-                    className="thumbnail-item"
-                    onMouseOver={() => {
-                      changeImageSrc(shoes3);
-                    }}
-                  >
-                    <img
-                      src={shoes3}
-                      alt="abc"
-                      className="thumbnail-item__img"
-                    />
-                  </li>
-                </ul>
-                {/* <div className="product__thumbnail">
-                  <Slider {...setting}>
-                    <div
-                      className="thumbnail-item"
-                      onMouseOver={() => {
-                        changeImageSrc(shoes3);
-                      }}
-                    >
-                      <img
-                        src={shoes3}
-                        alt="abc"
-                        className="thumbnail-item__img"
-                      />
-                    </div>
-                    <div
-                      className="thumbnail-item"
-                      onMouseOver={() => {
-                        changeImageSrc(shoes3);
-                      }}
-                    >
-                      <img
-                        src={shoes3}
-                        alt="abc"
-                        className="thumbnail-item__img"
-                      />
-                    </div>
-
-                    <div
-                      className="thumbnail-item"
-                      onMouseOver={() => {
-                        changeImageSrc(shoes3);
-                      }}
-                    >
-                      <img
-                        src={shoes3}
-                        alt="abc"
-                        className="thumbnail-item__img"
-                      />
-                    </div>
-                  </Slider>
-                </div> */}
-                <div className="product__imgBox">
-                  <h2 className="product__name">Nike Air Zoom</h2>
-                  <img src={shoes3} alt="a" className="product__img" />
-                  <a href className="btn">
-                    Add to cart
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* <Footer /> */}
-    </>
+        Add product
+      </button>
+    </div>
   );
 };
 
-export default Detail;
+const mapStateToProps = (state) => {
+  return {
+    productDetail: state.ProductReducer.productDetail || {
+      name: "",
+      price: 0,
+      description: "",
+    },
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onProductDetail: (value) => {
+      return dispatch(Actions.actionFetchProductDetailRequest(value));
+    },
+    onAddProductToCart: (product) => {
+      return dispatch(Actions.actionAddProductToCartRequest(product, 1));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Detail);

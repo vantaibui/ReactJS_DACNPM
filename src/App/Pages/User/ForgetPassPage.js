@@ -1,32 +1,24 @@
 import React from "react";
 import { useFormik } from "formik";
 import { connect } from "react-redux";
+import { NavLink } from "react-router-dom";
 
 import * as Actions from "../../Redux/Actions";
 
 import Footer from "../../Layouts/User/Footer/Footer";
-import { NavLink } from "react-router-dom";
 
-const RegisterPage = (props) => {
+const ForgetPassPage = (props) => {
   const formik = useFormik({
     initialValues: {
-      username: "",
       email: "",
-      password: "",
-      address: "",
-      phone: "",
-      role: "ROLE_USER",
-      active: 0,
     },
     onSubmit: (values) => {
       console.log(values);
-      props.onRegister(values);
+      props.onForgetPassword(values);
       document.getElementById("btn-reset").click();
-      // document.getElementById("btn-confirmOTP").click();
     },
   });
-
-  let headerAuthentication = () => {
+  let headerLogin = () => {
     return (
       <header className="navbar-buyer">
         <div className="navbar-buyer__logo">
@@ -40,7 +32,7 @@ const RegisterPage = (props) => {
               </g>
             </svg>
           </a>
-          <span className="navbar-buyer__logo-title">Đăng nhập</span>
+          <span className="navbar-buyer__logo-title">Quên mật khẩu</span>
         </div>
         <div className="navbar-buyer__help">
           <a className="navbar-buyer__help-link"> Cần trợ giúp? </a>
@@ -48,78 +40,27 @@ const RegisterPage = (props) => {
       </header>
     );
   };
-
-  let formRegister = () => {
+  let formLogin = () => {
     return (
       <section className="form-buyer">
         <div className="form-buyer__wrapper">
           <div className="form-buyer__inner">
             <form onSubmit={formik.handleSubmit}>
-              <div className="authentication-form signUp">
+              <div className="authentication-form">
                 <div className="authentication-form__header">
-                  <h3 className="authentication-form__heading">Đăng ký</h3>
+                  <h3 className="authentication-form__heading">
+                    Quên mật khẩu
+                  </h3>
                 </div>
                 <div className="authentication-form__form">
                   <div className="authentication-form__group">
                     <input
                       type="text"
                       className="authentication-form__input"
-                      placeholder="Tên của bạn"
-                      name="username"
-                      onChange={formik.handleChange}
-                      value={formik.values.username}
-                    />
-                    <div className="authentication-form__check">
-                      <i className="far fa-check-circle authentication-form__check-icon" />
-                    </div>
-                  </div>
-                  <div className="authentication-form__group">
-                    <input
-                      type="text"
-                      className="authentication-form__input"
-                      placeholder="Email của bạn"
+                      placeholder="Nhập email của bạn"
                       name="email"
                       onChange={formik.handleChange}
                       value={formik.values.email}
-                    />
-                    <div className="authentication-form__check">
-                      <i className="far fa-check-circle authentication-form__check-icon" />
-                    </div>
-                  </div>
-                  <div className="authentication-form__group">
-                    <input
-                      type="text"
-                      className="authentication-form__input"
-                      placeholder="Số điện thoại của bạn"
-                      name="phone"
-                      onChange={formik.handleChange}
-                      value={formik.values.phone}
-                    />
-                    <div className="authentication-form__check">
-                      <i className="far fa-check-circle authentication-form__check-icon" />
-                    </div>
-                  </div>
-                  <div className="authentication-form__group">
-                    <input
-                      type="text"
-                      className="authentication-form__input"
-                      placeholder="Địa chỉ của bạn"
-                      name="address"
-                      onChange={formik.handleChange}
-                      value={formik.values.address}
-                    />
-                    <div className="authentication-form__check">
-                      <i className="far fa-check-circle authentication-form__check-icon" />
-                    </div>
-                  </div>
-                  <div className="authentication-form__group">
-                    <input
-                      type="password"
-                      className="authentication-form__input"
-                      placeholder="Mật khẩu của bạn"
-                      name="password"
-                      onChange={formik.handleChange}
-                      value={formik.values.password}
                     />
                     <div className="authentication-form__check">
                       <i className="far fa-check-circle authentication-form__check-icon" />
@@ -129,18 +70,18 @@ const RegisterPage = (props) => {
                     type="submit"
                     className="btn authentication-form__btn"
                   >
-                    Tiếp theo
+                    Tiếp tục
                   </button>
                   <button type="reset" id="btn-reset" className="btn btn-reset">
                     Reset
                   </button>
                   <NavLink
                     exact
-                    to="/confirmOTP"
+                    to="/resetPassword"
                     className="btn btn-reset"
                     id="go-back"
                   >
-                    Confirm OTP
+                    TV
                   </NavLink>
                   <div className="authentication-form__separate">
                     <div className="authentication-form__separate-line" />
@@ -178,28 +119,16 @@ const RegisterPage = (props) => {
                       </span>
                     </a>
                   </div>
-                  <div className="authentication-form__aside">
-                    <p className="authentication-form__policy-text">
-                      Bằng việc đăng ký, bạn đã đồng ý với Shopee về
-                      <a href className="authentication-form__text-link">
-                        Điều khoản dịch cụ
-                      </a>
-                      &amp;
-                      <a href className="authentication-form__text-link">
-                        Chính sách bảo mật.
-                      </a>
-                    </p>
-                  </div>
                 </div>
                 <div className="authentication-form__controls">
                   <span className="authentication-form__controls-title">
-                    Bạn đã có tài khoản?
+                    Bạn mới biết đến Shopee?
                   </span>
                   <a
                     href="./login.html"
                     className="authentication-form__controls-link"
                   >
-                    Đăng nhập
+                    Đăng ký
                   </a>
                 </div>
               </div>
@@ -211,8 +140,8 @@ const RegisterPage = (props) => {
   };
   return (
     <>
-      {headerAuthentication()}
-      {formRegister()}
+      {headerLogin()}
+      {formLogin()}
       <Footer />
     </>
   );
@@ -220,10 +149,10 @@ const RegisterPage = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onRegister: (values) => {
-      return dispatch(Actions.actionRegisterRequest(values));
+    onForgetPassword: (email) => {
+      return dispatch(Actions.actionCheckEmailRequest(email));
     },
   };
 };
 
-export default connect(null, mapDispatchToProps)(RegisterPage);
+export default connect(null, mapDispatchToProps)(ForgetPassPage);

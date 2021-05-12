@@ -11,12 +11,23 @@ import { accessToken, domain } from "../../Configuration";
 
 // export const productService = new ProductService();
 
+// Fetch all product
 export const fetchProducts = () => {
   return axios({
     url: `${domain}/products`,
     method: "GET",
   });
 };
+
+// Fetch product detail
+
+export const fetchProductDetail = (value) => {
+  return axios({
+    url: `${domain}/products/${value}`,
+    method: "GET",
+  });
+};
+
 export const addProduct = (product) => {
   let formData = new formData();
   formData.append("file", product.file);

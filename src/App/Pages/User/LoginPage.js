@@ -1,7 +1,11 @@
-import { useFormik } from "formik";
 import React from "react";
+import { useFormik } from "formik";
 import { connect } from "react-redux";
+
+import * as Actions from "../../Redux/Actions";
+
 import Footer from "../../Layouts/User/Footer/Footer";
+import { NavLink } from "react-router-dom";
 
 const LoginPage = (props) => {
   const formik = useFormik({
@@ -10,8 +14,7 @@ const LoginPage = (props) => {
       password: "",
     },
     onSubmit: (values) => {
-      console.log(values);
-      // props.onLogin(value);
+      props.onLogin(values);
       document.getElementById("btn-reset").click();
     },
   });
@@ -43,7 +46,7 @@ const LoginPage = (props) => {
         <div className="form-buyer__wrapper">
           <div className="form-buyer__inner">
             <form onSubmit={formik.handleSubmit}>
-              <div className="authentication-form signUp">
+              <div className="authentication-form">
                 <div className="authentication-form__header">
                   <h3 className="authentication-form__heading">Đăng Nhập</h3>
                 </div>
@@ -52,7 +55,7 @@ const LoginPage = (props) => {
                     <input
                       type="text"
                       className="authentication-form__input"
-                      placeholder="Email của bạn"
+                      placeholder="Nhập tên tài khoản của bạn"
                       name="username"
                       onChange={formik.handleChange}
                       value={formik.values.username}
@@ -80,6 +83,9 @@ const LoginPage = (props) => {
                   <button type="reset" id="btn-reset" className="btn btn-reset">
                     Reset
                   </button>
+                  <NavLink exact to="/" className="btn btn-reset" id="go-back">
+                    TV
+                  </NavLink>
                   <div className="authentication-form__separate">
                     <div className="authentication-form__separate-line" />
                     <span className="authentication-form__separate-or">
@@ -147,7 +153,7 @@ const LoginPage = (props) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onLogin: (values) => {
-      // return dispatch(actionLoginRequest(values));
+      return dispatch(Actions.actionLoginRequest(values));
     },
   };
 };

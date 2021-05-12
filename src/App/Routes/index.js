@@ -1,12 +1,15 @@
 import React from "react";
 
 import HomePage from "../Pages/User/HomePage";
-import Detail from "../Pages/User/DetailPage";
 import LoginPage from "../Pages/User/LoginPage";
 import RegisterPage from "../Pages/User/RegisterPage";
+import ConfirmOTPPage from "../Pages/User/ConfirmOTPPage";
 import AdminPage from "../Pages/Admin/AdminPage";
 import SellerPage from "../Pages/Seller/SellerPage";
 import NotFoundPage from "../Pages/NotFoundPage";
+import DetailPage from "../Pages/User/DetailPage";
+import CartPage from "../Pages/User/CartPage";
+import PaymentPage from "../Pages/User/PaymentPage";
 
 const Routes = [
   {
@@ -18,9 +21,23 @@ const Routes = [
   },
   {
     exact: false,
-    path: "/detail/:id",
+    path: "/products/:id",
     main: () => {
-      return <Detail />;
+      return <DetailPage />;
+    },
+  },
+  {
+    exact: false,
+    path: "/cart",
+    main: () => {
+      return <CartPage />;
+    },
+  },
+  {
+    exact: false,
+    path: "/payment",
+    main: () => {
+      return <PaymentPage />;
     },
   },
   {
@@ -32,9 +49,16 @@ const Routes = [
   },
   {
     exact: false,
-    path: "/signup",
+    path: "/register",
     main: () => {
       return <RegisterPage />;
+    },
+  },
+  {
+    exact: false,
+    path: "/confirmOTP",
+    main: () => {
+      return <ConfirmOTPPage />;
     },
   },
   {

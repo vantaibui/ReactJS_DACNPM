@@ -12,6 +12,12 @@ import AdminTemplate from "./App/Templates/Admin";
 
 import routes from "./App/Routes";
 import LoginPage from "./App/Pages/User/LoginPage";
+import CartPage from "./App/Pages/User/CartPage";
+import PaymentPage from "./App/Pages/User/PaymentPage";
+import ConfirmOTPPage from "./App/Pages/User/ConfirmOTPPage";
+import RegisterPage from "./App/Pages/User/RegisterPage";
+import ForgetPassPage from "./App/Pages/User/ForgetPassPage";
+import ResetPassPage from "./App/Pages/User/ResetPassPage";
 
 const App = () => {
   let showRoutes = (routes) => {
@@ -70,15 +76,27 @@ const App = () => {
     <BrowserRouter>
       <Fragment>
         <Switch>
-          <Route exact path="/" component={HomePage} />
+          <HomeTemplate exact path="/" Component={HomePage} />
 
-          <HomeTemplate exact path="/detail/:id" Component={Detail} />
+          <HomeTemplate exact path="/products/:id" Component={Detail} />
+
+          <HomeTemplate exact path="/cart" Component={CartPage} />
+
+          <HomeTemplate exact path="/payment" Component={PaymentPage} />
 
           <SellerTemplate exact path="/seller" Component={SellerPage} />
 
           <AdminTemplate exact path="/admin" Component={AdminPage} />
 
           <Route exact path="/login" component={LoginPage} />
+
+          <Route exact path="/register" component={RegisterPage} />
+
+          <Route exact path="/confirmOTP" component={ConfirmOTPPage} />
+
+          <Route exact path="/forgetPassword" component={ForgetPassPage} />
+
+          <Route exact path="/resetPassword" component={ResetPassPage} />
 
           {/* {showRoutes(routes)} */}
         </Switch>

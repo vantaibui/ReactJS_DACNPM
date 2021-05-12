@@ -1,22 +1,24 @@
-import React from "react";
-import "./Css/style.css";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
+
+import "./Css/style.css";
+import * as Actions from "../../Redux/Actions";
 
 import ProductList from "../../Components/User/Product/Product/ProductList";
 import PaginationList from "../../Components/User/Pagination/PaginationList";
-import Header from "../../Layouts/User/Header/Header";
-import Footer from "../../Layouts/User/Footer/Footer";
 import NavbarList from "../../Components/User/Navbar/NavbarList";
 import HomeFilter from "../../Components/User/Filter/HomeFilter";
 import SliderNotification from "../../Components/User/Slider/SliderNotification";
 
 const HomePage = (props) => {
   let { products } = props;
-  console.log(products);
+
+  useEffect(() => {
+    props.fetchProducts();
+  }, []);
+
   return (
     <>
-      {/* <Header /> */}
-
       <div className="app-container">
         <div className="grid">
           <div className="grid__row app-content">
@@ -29,25 +31,27 @@ const HomePage = (props) => {
               {/* Home filter */}
               <HomeFilter />
               {/* List product */}
-              <ProductList />
+              <ProductList products={products} />
               {/* Pagination */}
               <PaginationList />
             </div>
           </div>
         </div>
       </div>
-
-      {/* <Footer /> */}
     </>
   );
 };
 
 const mapStateToProps = (state) => {
   return {
-    products: state.ProductReducer,
+    products: state.ProductReducer.products,
   };
 };
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    fetchProducts: () => {
+      return dispatch(Actions.actionFetchProductsRequest());
+    },
+  };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

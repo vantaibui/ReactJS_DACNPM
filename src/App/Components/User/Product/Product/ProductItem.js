@@ -1,23 +1,88 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
-const ProductItem = () => {
+const ProductItem = (props) => {
+  let { product } = props;
+
+  let renderRating = (rating) => {
+    let result;
+    let iconStar = (
+      <i className="fa fa-star home-product__item-action-star--gold" />
+    );
+    if (rating > 0) {
+      for (let i = 0; i < rating; i++) {
+        switch (i) {
+          case 0:
+            result = <></>;
+            break;
+          case 1:
+            result = <>{iconStar}</>;
+            break;
+          case 2:
+            result = (
+              <>
+                {iconStar}
+                {iconStar}
+              </>
+            );
+            break;
+          case 3:
+            result = (
+              <>
+                {iconStar}
+                {iconStar}
+                {iconStar}
+              </>
+            );
+            break;
+          case 4:
+            result = (
+              <>
+                {iconStar}
+                {iconStar}
+                {iconStar}
+                {iconStar}
+              </>
+            );
+            break;
+          case 5:
+            result = (
+              <>
+                {iconStar}
+                {iconStar}
+                {iconStar}
+                {iconStar}
+                {iconStar}
+              </>
+            );
+            break;
+        }
+      }
+    }
+    return result;
+  };
+
   return (
     <div className="grid-column-2-4">
-      <a href="./detail.html" className="home-product__item">
+      <NavLink
+        exact
+        to={`/products/${product.id}`}
+        className="home-product__item"
+      >
         <div
           style={{
-            backgroundImage: "url(../Assets/Images/User/rau-muong-4kfarm.jpg)",
+            backgroundImage:
+              "url(https://cdn.tgdd.vn/Products/Images/2513/236952/bhx/gao-thom-hat-ngoc-troi-thien-vuong-tui-5kg-202104261519374512_300x300.jpeg)",
           }}
           className="home-product__item-img"
         />
         <div className="home-product__item-info">
-          <h4 className="home-product__item-name">
-            Rau muống tươi 4KFarm túi 200-300g Rau muống tươi 4KFarm túi
-            200-300g
-          </h4>
+          <h4 className="home-product__item-name">{product.name}</h4>
           <div className="home-product__item-price">
             <span className="home-product__item-price-old">1.200.000₫</span>
-            <span className="home-product__item-price-current">999.000₫</span>
+            <span className="home-product__item-price-current">
+              {product.price}₫
+            </span>
           </div>
           <div className="home-product__item-action">
             <span className="home-product__item-action-heart home-product__item-action-heart--hearted">
@@ -25,28 +90,29 @@ const ProductItem = () => {
               <i className="fas fa-heart home-product__item-heart-icon-fill" />
             </span>
             <span className="home-product__item-action-rating">
-              <i className="far fa-star home-product__item-action-star--gold" />
+              {/* <i className="far fa-star home-product__item-action-star--gold" />
               <i className="fa fa-star home-product__item-action-star--gold" />
               <i className="fa fa-star home-product__item-action-star--gold" />
               <i className="fa fa-star home-product__item-action-star--gold" />
-              <i className="fa fa-star home-product__item-action-star--gold" />
+              <i className="fa fa-star home-product__item-action-star--gold" /> */}
+              {renderRating(product.evaluate)}
             </span>
-            <span className="home-product__item-action-sold">88 đã bán</span>
+            {/* <span className="home-product__item-action-sold">88 đã bán</span> */}
           </div>
-          <div className="home-product__item-origin">
+          {/* <div className="home-product__item-origin">
             <span className="home-product__item-origin-brand">Whoo</span>
             <span className="home-product__item-origin-name">Nhật bản</span>
-          </div>
+          </div> */}
         </div>
-        <div className="home-product__item-favorite">
+        {/* <div className="home-product__item-favorite">
           <i className="fas fa-check home-product__item-favorite--check" />
           <span>Yêu thích</span>
         </div>
         <div className="home-product__item-sale-off">
           <span className="home-product__item-sale-off-percent">10%</span>
           <span className="home-product__item-sale-off-label">Giảm</span>
-        </div>
-      </a>
+        </div> */}
+      </NavLink>
     </div>
   );
 };

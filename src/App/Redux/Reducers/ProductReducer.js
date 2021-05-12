@@ -1,17 +1,23 @@
-// import * as Types from "../Types/ActionType";
+import * as Types from "../Types/ActionType";
 
-import { FETCH_PRODUCTS } from "../Types/ActionType";
-
-let initialState = [];
+let initialState = {
+  products: [],
+  productDetail: null,
+};
 
 const ProductReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_PRODUCTS: {
-      state = action.payload;
-      return [...state];
+    case Types.FETCH_PRODUCTS: {
+      state.products = action.payload;
+      console.log(state.products);
+      return { ...state };
+    }
+    case Types.FETCH_PRODUCT_DETAIL: {
+      state.productDetail = action.payload;
+      return { ...state };
     }
     default:
-      return [...state];
+      return state;
   }
 };
 

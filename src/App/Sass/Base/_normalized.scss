@@ -132,3 +132,29 @@
 .btn-reset {
   display: none;
 }
+
+// Slick slider
+.home-slider {
+  position: relative;
+  .slick-slider {
+    .slick-arrow {
+      position: absolute;
+      top: 50%;
+      left: 2%;
+      z-index: 2;
+      &::before {
+        color: var(--secondary-color);
+        opacity: 1;
+      }
+    }
+    .slick-next {
+      left: unset;
+      right: 2%;
+    }
+
+    .slick-dots {
+      position: absolute;
+      bottom: 0;
+    }
+  }
+}

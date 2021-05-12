@@ -39,18 +39,23 @@
   .form-buyer__wrapper {
     background-color: rgb(238, 77, 45);
     .form-buyer__inner {
+      padding: 20px 0;
       margin: 0 auto;
-      width: 65rem;
-      min-height: 37.5rem;
-      height: 100%;
-      background-image: url(../../Images/User/bg-login.png);
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
+      // width: 65rem;
+      // min-height: 37.5rem;
+      // height: 100%;
+      // background-image: url(../../Images/User/bg-login.png);
+      // background-position: center;
+      // background-repeat: no-repeat;
+      // background-size: cover;
       display: flex;
       align-items: center;
-      justify-content: flex-end;
+      justify-content: center;
+      // justify-content: flex-end;
       .authentication-form {
+        &.signUp {
+          width: 30rem;
+        }
         width: 24.8125rem;
         min-height: 26.6875rem;
         height: 100%;
@@ -205,8 +210,6 @@
             color: #ee4d2d;
           }
         }
-      }
-      .signUp {
       }
     }
   }
