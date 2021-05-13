@@ -6,13 +6,13 @@ import { connect } from "react-redux";
 // import "slick-carousel/slick/slick-theme.css";
 
 import * as Actions from "../../Redux/Actions";
-import * as Types from "../../Redux/Types/ActionType";
 
 const Detail = (props) => {
   let { productDetail } = props;
 
   useEffect(() => {
-    let value = props.match.params.id;
+    // let value = props.match.params.id;
+    let value = props.match.params.code;
     props.onProductDetail(value);
   }, []);
 

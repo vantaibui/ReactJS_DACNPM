@@ -248,17 +248,18 @@
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
+  justify-content: space-between;
 }
 .home-product__item-price-old {
   font-size: 0.85rem;
   color: #666;
-  text-decoration: line-through;
   margin-left: 10px;
 }
 .home-product__item-price-current {
   font-size: 0.9rem;
   color: var(--secondary-color);
   margin-left: 10px;
+  margin-right: 10px;
 }
 .home-product__item-action {
   display: flex;

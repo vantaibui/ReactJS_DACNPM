@@ -15,7 +15,7 @@ const LoginPage = (props) => {
     },
     onSubmit: (values) => {
       props.onLogin(values);
-      document.getElementById("btn-reset").click();
+      // document.getElementById("btn-reset").click();
     },
   });
   let headerLogin = () => {
@@ -80,7 +80,12 @@ const LoginPage = (props) => {
                   >
                     đăng nhập
                   </button>
-                  <button type="reset" id="btn-reset" className="btn btn-reset">
+                  <button
+                    onClick={formik.handleReset}
+                    type="reset"
+                    id="btn-reset"
+                    className="btn btn-reset"
+                  >
                     Reset
                   </button>
                   <NavLink exact to="/" className="btn btn-reset" id="go-back">

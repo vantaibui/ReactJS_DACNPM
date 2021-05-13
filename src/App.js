@@ -78,7 +78,9 @@ const App = () => {
         <Switch>
           <HomeTemplate exact path="/" Component={HomePage} />
 
-          <HomeTemplate exact path="/products/:id" Component={Detail} />
+          {/* <HomeTemplate exact path="/products/id/:id" Component={Detail} /> */}
+
+          <HomeTemplate exact path="/products/code/:code" Component={Detail} />
 
           <HomeTemplate exact path="/cart" Component={CartPage} />
 

@@ -23,7 +23,14 @@ export const fetchProducts = () => {
 
 export const fetchProductDetail = (value) => {
   return axios({
-    url: `${domain}/products/${value}`,
+    url: `${domain}/products/id/${value}`,
+    method: "GET",
+  });
+};
+
+export const fetchProductDetailByCode = (value) => {
+  return axios({
+    url: `${domain}/products/code/${value}`,
     method: "GET",
   });
 };

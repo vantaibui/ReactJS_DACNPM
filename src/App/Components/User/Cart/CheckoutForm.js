@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 
 const CheckoutForm = (props) => {
   let { products } = props;
-  console.log(products);
   return (
     <div className="shopping-cart__checkout">
       <h5>tổng số lượng</h5>

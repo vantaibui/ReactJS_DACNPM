@@ -1,7 +1,10 @@
+import { user_login } from "../../Configuration";
 import * as Types from "../Types/ActionType";
 
+let data = JSON.parse(localStorage.getItem(user_login));
+
 let initialState = {
-  credentials: null,
+  credentials: data ? data : null,
   orders: [],
   accessToken: null,
 };

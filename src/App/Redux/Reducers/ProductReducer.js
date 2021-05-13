@@ -9,7 +9,6 @@ const ProductReducer = (state = initialState, action) => {
   switch (action.type) {
     case Types.FETCH_PRODUCTS: {
       state.products = action.payload;
-      console.log(state.products);
       return { ...state };
     }
     case Types.FETCH_PRODUCT_DETAIL: {

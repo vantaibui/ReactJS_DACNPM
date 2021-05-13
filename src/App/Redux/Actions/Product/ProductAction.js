@@ -40,7 +40,18 @@ export const actionFetchProductDetailRequest = (value) => {
   return (dispatch) => {
     return Services.fetchProductDetail(value)
       .then((result) => {
-        console.log(result.data);
+        dispatch(CreateAction(Types.FETCH_PRODUCT_DETAIL, result.data));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+export const actionFetchProductDetailByCodeRequest = (value) => {
+  return (dispatch) => {
+    return Services.fetchProductDetailByCode(value)
+      .then((result) => {
         dispatch(CreateAction(Types.FETCH_PRODUCT_DETAIL, result.data));
       })
       .catch((err) => {

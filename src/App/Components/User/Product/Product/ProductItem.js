@@ -11,7 +11,7 @@ const ProductItem = (props) => {
     );
     if (rating > 0) {
       for (let i = 0; i < rating; i++) {
-        switch (i) {
+        switch (i + 1) {
           case 0:
             result = <></>;
             break;
@@ -66,7 +66,8 @@ const ProductItem = (props) => {
     <div className="grid-column-2-4">
       <NavLink
         exact
-        to={`/products/${product.id}`}
+        // to={`/products/id/${product.id}`}
+        to={`/products/code/${product.code}`}
         className="home-product__item"
       >
         <div
@@ -79,9 +80,11 @@ const ProductItem = (props) => {
         <div className="home-product__item-info">
           <h4 className="home-product__item-name">{product.name}</h4>
           <div className="home-product__item-price">
-            <span className="home-product__item-price-old">1.200.000₫</span>
+            <span className="home-product__item-price-old">
+              {product.remain} còn lại
+            </span>
             <span className="home-product__item-price-current">
-              {product.price}₫
+              {product.price} ₫
             </span>
           </div>
           <div className="home-product__item-action">
@@ -90,19 +93,12 @@ const ProductItem = (props) => {
               <i className="fas fa-heart home-product__item-heart-icon-fill" />
             </span>
             <span className="home-product__item-action-rating">
-              {/* <i className="far fa-star home-product__item-action-star--gold" />
-              <i className="fa fa-star home-product__item-action-star--gold" />
-              <i className="fa fa-star home-product__item-action-star--gold" />
-              <i className="fa fa-star home-product__item-action-star--gold" />
-              <i className="fa fa-star home-product__item-action-star--gold" /> */}
               {renderRating(product.evaluate)}
             </span>
-            {/* <span className="home-product__item-action-sold">88 đã bán</span> */}
+            {/* <span className="home-product__item-action-sold">
+              {product.remain} còn lại
+            </span> */}
           </div>
-          {/* <div className="home-product__item-origin">
-            <span className="home-product__item-origin-brand">Whoo</span>
-            <span className="home-product__item-origin-name">Nhật bản</span>
-          </div> */}
         </div>
         {/* <div className="home-product__item-favorite">
           <i className="fas fa-check home-product__item-favorite--check" />

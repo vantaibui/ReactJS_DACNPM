@@ -11,13 +11,30 @@ import Avatar from "../../../Assets/Images/User/avatar.png";
 
 import Logo from "../../../Assets/Images/User/logo.jfif";
 
-import CartProduct from "../../../Components/User/Cart/CartHeader/CartProduct";
+import CartHeaderBody from "../../../Components/User/Cart/CartHeader/CartHeaderBody";
 import FormSearch from "../../../Components/User/Header/FormSearch";
 
-import { user_login } from "../../../Configuration";
+import { accessToken, user_login } from "../../../Configuration";
+import CartHeaderFooter from "../../../Components/User/Cart/CartHeader/CartHeaderFooter";
 
 const Header = (props) => {
-  let account = localStorage.getItem(user_login);
+  let { credentials, productInCart } = props;
+
+  let logout = () => {
+    return (
+      localStorage.removeItem(user_login),
+      localStorage.removeItem(accessToken),
+      window.location.reload()
+    );
+  };
+
+  let quantityProductInCart = (products) => {
+    let result = 0;
+    for (let index in products) {
+      result = index + 1;
+    }
+    return result;
+  };
 
   return (
     <header className="header">
@@ -192,7 +209,7 @@ const Header = (props) => {
                 Hỗ trợ
               </a>
             </li>
-            {!account ? (
+            {!credentials ? (
               <>
                 <li class="header__navbar-item header__navbar-item--strong header__navbar-item--separate">
                   <NavLink
@@ -221,7 +238,7 @@ const Header = (props) => {
                   className="header__navbar-user-img"
                 />
                 <span className="header__navbar-user-name">
-                  {JSON.parse(account).username}
+                  {credentials.username}
                 </span>
                 <ul className="header__navbar-user-menu">
                   <li className="header__navbar-user-item">
@@ -233,7 +250,14 @@ const Header = (props) => {
                     <a className="header__navbar-user-link">Đơn mua</a>
                   </li>
                   <li className="header__navbar-user-item header__navbar-user-item--separate">
-                    <a className="header__navbar-user-link">Đăng xuất</a>
+                    <a
+                      onClick={() => {
+                        logout();
+                      }}
+                      className="header__navbar-user-link"
+                    >
+                      Đăng xuất
+                    </a>
                   </li>
                 </ul>
               </li>
@@ -263,38 +287,41 @@ const Header = (props) => {
               className="header__cart-link header__cart-link--toggle"
             >
               <i className="fas fa-shopping-cart header__cart-link-icon" />
-              <span className="header__cart-notice">3</span>
-              {/* <div class="header__cart-list header__cart-list--no-cart">
-        <img
-          class="header__cart-list-img"
-          src="../Asserts/Images/User/no-cart.png"
-          alt="Cart"
-        />
-        <p class="header__cart-list-msg">Chưa có sản phẩm</p>
-      </div> */}
-              <div className="header__cart-list">
-                <h4 className="header__cart-list-heading">Sản phẩm đã thêm</h4>
-                <ul className="header__cart-list-item">
-                  <CartProduct />
-                </ul>
-                <div className="header__cart-list-footer">
-                  <div className="header__cart-total">
-                    <p className="header__cart-total-item">
-                      <span className="total-item__title">Tổng tiền :</span>
-                      <span className="total-item__value">200.000 ₫</span>
-                    </p>
-                    <p className="header__cart-total-item">
-                      <span className="total-item__title">Ví tích điểm</span>
-                      <span className="total-item__value">+200.000 điểm</span>
-                    </p>
-                  </div>
-                  <div className="header__cart-view-cart">
-                    <a className="btn btn-primary view-cart__btn">
-                      Xem giỏ hàng
-                    </a>
+              <span className="header__cart-notice">
+                {quantityProductInCart(productInCart)}
+              </span>
+
+              {!productInCart ? (
+                <div class="header__cart-list header__cart-list--no-cart">
+                  <img
+                    class="header__cart-list-img"
+                    src="../Asserts/Images/User/no-cart.png"
+                    alt="Cart"
+                  />
+                  <p class="header__cart-list-msg">Chưa có sản phẩm</p>
+                </div>
+              ) : (
+                <div className="header__cart-list">
+                  <h4 className="header__cart-list-heading">
+                    Sản phẩm đã thêm
+                  </h4>
+                  <ul className="header__cart-list-item">
+                    <CartHeaderBody products={productInCart} />
+                  </ul>
+                  <div className="header__cart-list-footer">
+                    <CartHeaderFooter products={productInCart} />
+                    <div className="header__cart-view-cart">
+                      <NavLink
+                        exact
+                        to="/cart"
+                        className="btn btn-primary view-cart__btn"
+                      >
+                        Xem giỏ hàng
+                      </NavLink>
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
             </NavLink>
           </div>
         </div>
@@ -304,7 +331,10 @@ const Header = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    credentials: state.UserReducer.credentials,
+    productInCart: state.CartReducer,
+  };
 };
 
 export default connect(mapStateToProps)(Header);
