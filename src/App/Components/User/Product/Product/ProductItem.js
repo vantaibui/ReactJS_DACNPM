@@ -66,8 +66,8 @@ const ProductItem = (props) => {
     <div className="grid-column-2-4">
       <NavLink
         exact
-        // to={`/products/id/${product.id}`}
-        to={`/products/code/${product.code}`}
+        to={`/products/id/${product.id}`}
+        // to={`/products/code/${product.code}`}
         className="home-product__item"
       >
         <div

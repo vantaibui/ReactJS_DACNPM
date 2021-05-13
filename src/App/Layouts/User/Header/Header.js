@@ -8,6 +8,7 @@ import AppStore from "../../../Assets/Images/User/AppStore.png";
 import GooglePlay from "../../../Assets/Images/User/GooglePlay.png";
 import AppGallery from "../../../Assets/Images/User/AppGallery.png";
 import Avatar from "../../../Assets/Images/User/avatar.png";
+import NoCart from "../../../Assets/Images/User/no-cart.png";
 
 import Logo from "../../../Assets/Images/User/logo.jfif";
 
@@ -291,13 +292,9 @@ const Header = (props) => {
                 {quantityProductInCart(productInCart)}
               </span>
 
-              {!productInCart ? (
+              {productInCart.length === 0 ? (
                 <div class="header__cart-list header__cart-list--no-cart">
-                  <img
-                    class="header__cart-list-img"
-                    src="../Asserts/Images/User/no-cart.png"
-                    alt="Cart"
-                  />
+                  <img class="header__cart-list-img" src={NoCart} alt="Cart" />
                   <p class="header__cart-list-msg">Chưa có sản phẩm</p>
                 </div>
               ) : (

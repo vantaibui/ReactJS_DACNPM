@@ -21,7 +21,7 @@ export const fetchProducts = () => {
 
 // Fetch product detail
 
-export const fetchProductDetail = (value) => {
+export const fetchProductDetailById = (value) => {
   return axios({
     url: `${domain}/products/id/${value}`,
     method: "GET",

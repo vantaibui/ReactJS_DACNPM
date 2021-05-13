@@ -3,14 +3,23 @@ import { connect } from "react-redux";
 import { useFormik } from "formik";
 
 import * as Actions from "../../Redux/Actions";
+import Product from "../../Components/User/Checkout/Product";
 
-const PaymentPage = () => {
+const PaymentPage = (props) => {
+  let { products } = props;
+
   const formik = useFormik({
     initialValues: {},
     onSubmit: (values) => {
       console.log(values);
     },
   });
+
+  let renderProduct = (products) => {
+    return products.map((product, index) => {
+      return <Product key={index} product={product} />;
+    });
+  };
 
   return (
     <section className="checkout">
@@ -123,47 +132,31 @@ const PaymentPage = () => {
                     <span>Tổng</span>
                   </div>
                   <ul className="checkout__order__products">
-                    <li className="checkout__order__item">
-                      <span className="checkout__order__item-name">
-                        Vegetable’s Package
-                        <strong className="quantity">× 1</strong>
-                      </span>
-                      <span className="checkout__order__item-amount">
-                        700,000 <span className="currency">₫</span>
-                      </span>
-                    </li>
-                    <li className="checkout__order__item">
-                      <span className="checkout__order__item-name">
-                        Vegetable’s Package
-                        <strong className="quantity">× 1</strong>
-                      </span>
-                      <span className="checkout__order__item-amount">
-                        700,000 <span className="currency">₫</span>
-                      </span>
-                    </li>
-                    <li className="checkout__order__item">
-                      <span className="checkout__order__item-name">
-                        Vegetable’s Package
-                        <strong className="quantity">× 1</strong>
-                      </span>
-                      <span className="checkout__order__item-amount">
-                        700,000 <span className="currency">₫</span>
-                      </span>
-                    </li>
+                    {renderProduct(products)}
                   </ul>
                   <div className="checkout__order__subtotal">
                     <span className="title">Tổng phụ</span>
                     <span className="checkout__order__item-amount">
-                      700,000 <span className="currency">₫</span>
+                      {products.reduce((total, product, index) => {
+                        return (total +=
+                          product?.product.price * product?.quantity);
+                      }, 0)}{" "}
+                      <span className="currency">₫</span>
                     </span>
                   </div>
                   <div className="checkout__order__total">
                     <span className="title">Tổng</span>
                     <span className="checkout__order__item-amount">
-                      700,000 <span className="currency">₫</span>
+                      {products.reduce((total, product, index) => {
+                        return (total +=
+                          product?.product.price * product?.quantity);
+                      }, 0)}{" "}
+                      <span className="currency">₫</span>
                     </span>
                   </div>
-                  <button className="checkout__order-btn">Đặt hàng</button>
+                  <button type="submit" className="checkout__order-btn">
+                    Đặt hàng
+                  </button>
                 </div>
               </div>
             </div>
