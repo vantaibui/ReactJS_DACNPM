@@ -5,17 +5,16 @@ const ProductList = (props) => {
   let { products } = props;
 
   let renderProductItem = (products) => {
-    return products.map((product, index) => {
+    let result;
+    result = products.map((product, index) => {
       return <ProductItem key={index} product={product} />;
     });
+    return result;
   };
 
   return (
     <div className="home-product">
-      <div className="grid__row">
-        {/* Product Item */}
-        {renderProductItem(products)}
-      </div>
+      <div className="grid__row">{renderProductItem(products)}</div>
     </div>
   );
 };

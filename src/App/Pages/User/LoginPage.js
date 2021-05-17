@@ -6,6 +6,7 @@ import * as Actions from "../../Redux/Actions";
 
 import Footer from "../../Layouts/User/Footer/Footer";
 import { NavLink } from "react-router-dom";
+import { user_login } from "../../Configuration";
 
 const LoginPage = (props) => {
   const formik = useFormik({
@@ -146,6 +147,7 @@ const LoginPage = (props) => {
       </section>
     );
   };
+
   return (
     <>
       {headerLogin()}

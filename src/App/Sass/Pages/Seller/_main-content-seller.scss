@@ -123,11 +123,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            button {
+            .btn-link {
+              text-decoration: none;
               background: var(--main-color-seller);
               border-radius: 10px;
               color: #fff;
               font-size: 0.8rem;
+              font-weight: 400;
               padding: 0.5rem 1rem;
               border: 1px solid var(--main-color-seller);
               outline: none;
@@ -175,6 +177,10 @@
                       }
                       &.orange {
                         background: orangered;
+                      }
+                      .unit {
+                        font-size: 0.8rem;
+                        text-transform: lowercase !important;
                       }
                     }
                   }
@@ -242,6 +248,107 @@
                   display: inline-block;
                   margin-left: 0.5rem;
                   color: var(--main-color-seller);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .seller-content {
+      margin-top: 3.5rem;
+      .projects {
+        .card {
+          background: #fff;
+          border-radius: 5px;
+          .card-header {
+            padding: 1rem;
+            border-bottom: 2px solid #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .btn-link {
+              text-decoration: none;
+              background: var(--main-color-seller);
+              border-radius: 10px;
+              color: #fff;
+              font-size: 0.8rem;
+              font-weight: 400;
+              padding: 0.5rem 1rem;
+              border: 1px solid var(--main-color-seller);
+              outline: none;
+            }
+          }
+          .card-body {
+            padding: 1rem;
+            table {
+              width: 100%;
+              overflow-x: hidden;
+              border-collapse: collapse;
+              thead {
+                tr {
+                  // border-top: 1px solid #f0f0f0;
+                  border-bottom: 2px solid #f0f0f0;
+                  th {
+                    text-transform: capitalize;
+                    text-align: left;
+                    padding: 0.5rem 1rem;
+                    font-weight: 700;
+                    font-size: 0.9rem;
+                    color: #222;
+                  }
+                }
+              }
+              tbody {
+                tr {
+                  td {
+                    text-transform: capitalize;
+                    text-align: left;
+                    padding: 1rem 1rem;
+                    font-size: 0.9rem;
+                    color: #222;
+                    .status {
+                      display: inline-block;
+                      margin-right: 0.5rem;
+                      width: 10px;
+                      height: 10px;
+                      border-radius: 50%;
+                      &.purple {
+                        background: rebeccapurple;
+                      }
+                      &.pink {
+                        background: deeppink;
+                      }
+                      &.orange {
+                        background: orangered;
+                      }
+                      .unit {
+                        font-size: 0.8rem;
+                        text-transform: lowercase !important;
+                      }
+                    }
+                    .btn-action {
+                      &.delete {
+                        background: #ea2e2e;
+                        border: 1px solid #ea2e2e;
+                        margin-right: 0;
+                      }
+                      margin-right: 4px;
+                      text-decoration: none;
+                      background: #55a5de;
+                      border-radius: 10px;
+                      color: #fff;
+                      font-size: 0.8rem;
+                      font-weight: 400;
+                      padding: 0.8em 0.8rem;
+                      border: 1px solid #55a5de;
+                      outline: none;
+                      cursor: pointer;
+                      i {
+                        margin-right: 2px;
+                      }
+                    }
+                  }
                 }
               }
             }

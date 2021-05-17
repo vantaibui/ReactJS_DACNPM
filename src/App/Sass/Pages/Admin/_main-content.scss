@@ -167,6 +167,9 @@
         }
       }
       .products {
+        background: #fff;
+        padding: 20px;
+        height: auto;
         h3 {
           small {
             color: #5850ec;
@@ -209,7 +212,7 @@
                   font-size: 0.9rem;
                   font-weight: 500;
                   color: #444;
-                  background: #fff;
+                  background: #f1f5f9;
                   height: 60px;
                   display: flex;
                   align-items: center;

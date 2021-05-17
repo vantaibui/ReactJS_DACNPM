@@ -60,3 +60,30 @@ export const actionUpdateProductInCartRequest = (product, quantity) => {
     );
   };
 };
+
+// Manage
+
+export const actionFetchAllProductRequest = () => {
+  return (dispatch) => {
+    return Services.fetchAllProduct()
+      .then((result) => {
+        dispatch(CreateAction(Types.FETCH_PRODUCTS, result.data));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+export const actionDeleteProductRequest = (id) => {
+  return (dispatch) => {
+    return Services.deleteProduct(id)
+      .then((result) => {
+        console.log(result.data);
+        dispatch(CreateAction(Types.DELETE_PRODUCT, result.data));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};

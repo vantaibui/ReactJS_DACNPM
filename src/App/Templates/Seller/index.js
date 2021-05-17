@@ -1,12 +1,16 @@
 import React, { Fragment } from "react";
 import { Route } from "react-router-dom";
 import Header from "../../Layouts/Seller/Header";
+import Sidebar from "../../Layouts/Seller/Sidebar";
 
 const SellerLayout = ({ ...props }) => {
   return (
     <Fragment>
-      <Header />
-      {props.children}
+      <Sidebar />
+      <div className="main-content-seller">
+        <Header />
+        {props.children}
+      </div>
     </Fragment>
   );
 };

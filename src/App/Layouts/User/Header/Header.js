@@ -212,7 +212,7 @@ const Header = (props) => {
             </li>
             {!credentials ? (
               <>
-                <li class="header__navbar-item header__navbar-item--strong header__navbar-item--separate">
+                <li className="header__navbar-item header__navbar-item--strong header__navbar-item--separate">
                   <NavLink
                     exact
                     to="/register"
@@ -221,7 +221,7 @@ const Header = (props) => {
                     Đăng ký
                   </NavLink>
                 </li>
-                <li class="header__navbar-item header__navbar-item--strong">
+                <li className="header__navbar-item header__navbar-item--strong">
                   <NavLink
                     exact
                     to="/login"
@@ -293,9 +293,13 @@ const Header = (props) => {
               </span>
 
               {productInCart.length === 0 ? (
-                <div class="header__cart-list header__cart-list--no-cart">
-                  <img class="header__cart-list-img" src={NoCart} alt="Cart" />
-                  <p class="header__cart-list-msg">Chưa có sản phẩm</p>
+                <div className="header__cart-list header__cart-list--no-cart">
+                  <img
+                    className="header__cart-list-img"
+                    src={NoCart}
+                    alt="Cart"
+                  />
+                  <p className="header__cart-list-msg">Chưa có sản phẩm</p>
                 </div>
               ) : (
                 <div className="header__cart-list">

@@ -1,7 +1,15 @@
 import React from "react";
 import NavbarItem from "./NavbarItem";
 
-const NavbarList = () => {
+const NavbarList = (props) => {
+  let { categories } = props;
+
+  let renderNavbarItem = (categories) => {
+    return categories.map((category, index) => {
+      return <NavbarItem key={index} category={category} />;
+    });
+  };
+
   return (
     <nav className="category">
       <h3 className="category__heading">
@@ -9,8 +17,8 @@ const NavbarList = () => {
         Danh mục
       </h3>
       <ul className="category__list">
-        <NavbarItem />
-        <li className="category__item">
+        {renderNavbarItem(categories)}
+        {/* <li className="category__item category__item--active">
           <a href className="category__item-link">
             thịt, cá, trứng, rau
           </a>
@@ -24,7 +32,7 @@ const NavbarList = () => {
           <a href className="category__item-link">
             sữa uống các loại
           </a>
-        </li>
+        </li> */}
       </ul>
     </nav>
   );

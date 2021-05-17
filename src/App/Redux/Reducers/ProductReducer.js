@@ -15,6 +15,10 @@ const ProductReducer = (state = initialState, action) => {
       state.productDetail = action.payload;
       return { ...state };
     }
+    case Types.DELETE_PRODUCT: {
+      console.log(action);
+      return { ...state };
+    }
     default:
       return state;
   }

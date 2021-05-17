@@ -6,18 +6,25 @@ import SellerPage from "./App/Pages/Seller/SellerPage";
 import Detail from "./App/Pages/User/DetailPage";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Fragment } from "react";
+import routes from "./App/Routes";
+
 import HomeTemplate from "./App/Templates/User";
 import SellerTemplate from "./App/Templates/Seller";
 import AdminTemplate from "./App/Templates/Admin";
 
-import routes from "./App/Routes";
 import LoginPage from "./App/Pages/User/LoginPage";
-import CartPage from "./App/Pages/User/CartPage";
-import PaymentPage from "./App/Pages/User/PaymentPage";
-import ConfirmOTPPage from "./App/Pages/User/ConfirmOTPPage";
 import RegisterPage from "./App/Pages/User/RegisterPage";
+import ConfirmOTPPage from "./App/Pages/User/ConfirmOTPPage";
 import ForgetPassPage from "./App/Pages/User/ForgetPassPage";
 import ResetPassPage from "./App/Pages/User/ResetPassPage";
+
+import CartPage from "./App/Pages/User/CartPage";
+import PaymentPage from "./App/Pages/User/PaymentPage";
+import CategoryPage from "./App/Pages/User/CategoryPage";
+
+import ProductManagePage from "./App/Pages/Seller/Product/";
+import CategoryManagePage from "./App/Pages/Seller/Category/";
+import CreateCategoryForm from "./App/Components/Seller/Form/CreateCategoryForm";
 
 const App = () => {
   let showRoutes = (routes) => {
@@ -66,30 +73,57 @@ const App = () => {
   };
 
   return (
-    // <div>
-    //   <Detail />
-    //   {/* <HomePage /> */}
-    //   {/* <AdminPage /> */}
-    //   {/* <SellerPage /> */}
-    // </div>
-
     <BrowserRouter>
       <Fragment>
         <Switch>
+          {/* Home */}
           <HomeTemplate exact path="/" Component={HomePage} />
 
           <HomeTemplate exact path="/products/id/:id" Component={Detail} />
 
           {/* <HomeTemplate exact path="/products/code/:code" Component={Detail} /> */}
 
+          <HomeTemplate
+            exact
+            path="/products/category/:id"
+            Component={CategoryPage}
+          />
+
           <HomeTemplate exact path="/cart" Component={CartPage} />
 
           <HomeTemplate exact path="/payment" Component={PaymentPage} />
 
+          {/* Seller */}
           <SellerTemplate exact path="/seller" Component={SellerPage} />
 
+          <SellerTemplate
+            exact
+            path="/seller/categories"
+            Component={CategoryManagePage}
+          />
+
+          <SellerTemplate
+            exact
+            path="/seller/products"
+            Component={ProductManagePage}
+          />
+
+          <SellerTemplate
+            exact
+            path="/seller/create-category"
+            Component={CreateCategoryForm}
+          />
+
+          <SellerTemplate
+            exact
+            path="/seller/create-product"
+            Component={CreateCategoryForm}
+          />
+
+          {/* Admin */}
           <AdminTemplate exact path="/admin" Component={AdminPage} />
 
+          {/* Authentication */}
           <Route exact path="/login" component={LoginPage} />
 
           <Route exact path="/register" component={RegisterPage} />
@@ -108,39 +142,3 @@ const App = () => {
 };
 
 export default App;
-
-// import React, { useEffect } from "react";
-// import { connect } from "react-redux";
-// import LoginPage from "./App/Pages/User/LoginPage";
-
-// import { actionFetchProductsRequest } from "./App/Redux/Actions/index";
-// import "./App/Sass/Main.scss";
-
-// const App = (props) => {
-//   console.log(props.productReducer);
-
-//   useEffect(() => {
-//     props.fetchProducts();
-//   }, []);
-//   return (
-//     <div>
-//       <LoginPage />
-//     </div>
-//   );
-// };
-
-// const mapStateToProps = (state) => {
-//   return {
-//     productReducer: state.ProductReducer,
-//   };
-// };
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     fetchProducts: () => {
-//       return dispatch(actionFetchProductsRequest());
-//     },
-//   };
-// };
-
-// export default connect(mapStateToProps, mapDispatchToProps)(App);

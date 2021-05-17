@@ -1,10 +1,13 @@
 // Category
 export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
 export const FETCH_CATEGORY_DETAIL = "FETCH_CATEGORY_DETAIL";
+export const CREATE_CATEGORY = "CREATE_CATEGORY";
+export const DELETE_CATEGORY = "DELETE_CATEGORY";
 
 // Product
 export const FETCH_PRODUCTS = "FETCH_PRODUCTS";
 export const FETCH_PRODUCT_DETAIL = "FETCH_PRODUCT_DETAIL";
+export const DELETE_PRODUCT = "DELETE_PRODUCT";
 
 // Cart
 export const ADD_PRODUCT_TO_CART = "ADD_PRODUCT_TO_CART";
@@ -19,3 +22,8 @@ export const CONFIRM_OTP = "CONFIRM_OTP";
 export const FORGOT_PASSWORD = "FORGOT_PASSWORD";
 export const RESET_PASSWORD = "RESET_PASSWORD";
 export const MANAGE_ACCOUNT = "MANAGE_ACCOUNT";
+
+// Form
+export const TOGGLE_FORM = "TOGGLE_FORM";
+export const CLOSE_FORM = "CLOSE_FORM";
+export const OPEN_FORM = "OPEN_FORM";

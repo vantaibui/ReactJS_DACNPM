@@ -62,6 +62,17 @@ const ProductItem = (props) => {
     return result;
   };
 
+  let renderImage = (images) => {
+    let result;
+    for (const i in images) {
+      if (i === 0) {
+        result = images[i].link;
+      }
+    }
+
+    return result;
+  };
+
   return (
     <div className="grid-column-2-4">
       <NavLink

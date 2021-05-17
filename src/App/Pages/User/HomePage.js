@@ -11,10 +11,11 @@ import HomeFilter from "../../Components/User/Filter/HomeFilter";
 import SliderNotification from "../../Components/User/Slider/SliderNotification";
 
 const HomePage = (props) => {
-  let { products } = props;
+  let { products, categories } = props;
 
   useEffect(() => {
     props.fetchProducts();
+    props.fetchCategories();
   }, []);
 
   return (
@@ -23,7 +24,7 @@ const HomePage = (props) => {
         <div className="grid">
           <div className="grid__row app-content">
             <div className="grid-column-2">
-              <NavbarList />
+              <NavbarList categories={categories} />
             </div>
             <div className="grid-column-10">
               {/*Slick slider  */}
@@ -45,12 +46,16 @@ const HomePage = (props) => {
 const mapStateToProps = (state) => {
   return {
     products: state.ProductReducer.products,
+    categories: state.CategoryReducer.categories,
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchProducts: () => {
       return dispatch(Actions.actionFetchProductsRequest());
+    },
+    fetchCategories: () => {
+      return dispatch(Actions.actionFetchCategoriesRequest());
     },
   };
 };

@@ -1,14 +1,17 @@
 import React from "react";
 import CustomerItem from "./CustomerItem";
 
-const CustomerList = () => {
+const CustomerList = (props) => {
   return (
     <div className="products">
       <h3>
         Products
-        <small>
-          see all products <span className="fa fa-arrow-right" />
-        </small>
+        <a href>
+          {" "}
+          <small>
+            see all products <span className="fa fa-arrow-right" />
+          </small>
+        </a>
       </h3>
       <div className="table-responsive">
         <table className="products__table">

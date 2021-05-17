@@ -39,7 +39,17 @@
   border-top: 1px solid #e1e1e1;
 }
 .category__item:first-child::before {
-  display: none;
+  border: none;
+}
+.category__item .category__item-link::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 2px;
+  transform: translateY(-50%);
+  border-width: 4px;
+  border-style: solid;
+  border-color: transparent transparent transparent var(--text-color);
 }
 .category__item--active .category__item-link {
   color: var(--secondary-color);
@@ -68,6 +78,9 @@
 .category__item-link:hover {
   right: -4px;
   color: var(--secondary-color);
+}
+.category__item-link:hover::before {
+  border-color: transparent transparent transparent var(--secondary-color);
 }
 /* Home filter */
 .home-filter {

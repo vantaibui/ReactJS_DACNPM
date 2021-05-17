@@ -1,11 +1,18 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
-const NavbarItem = () => {
+const NavbarItem = (props) => {
+  let { category } = props;
+
   return (
-    <li className="category__item category__item--active">
-      <a href className="category__item-link">
-        rau an toàn 4kfarm
-      </a>
+    <li className="category__item">
+      <NavLink
+        exact
+        to={`/products/category/${category.id}`}
+        className="category__item-link"
+      >
+        {category?.name}
+      </NavLink>
     </li>
   );
 };
