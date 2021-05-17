@@ -75,6 +75,20 @@ export const actionFetchAllProductRequest = () => {
   };
 };
 
+export const actionCreateProductRequest = (values) => {
+  console.log(values);
+  return (dispatch) => {
+    return Services.createProduct(values)
+      .then((result) => {
+        console.log(result.data);
+        dispatch(CreateAction(Types.CREATE_PRODUCT, result.data));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
 export const actionDeleteProductRequest = (id) => {
   return (dispatch) => {
     return Services.deleteProduct(id)

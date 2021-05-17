@@ -1,4 +1,7 @@
 .form-manage {
+  &.form-product {
+    margin-bottom: 20px;
+  }
   display: inline-flex;
   width: 100%;
   .form-manage__content {
@@ -69,12 +72,11 @@
     }
   }
 }
-.seller-content {
-  // margin: 0 !important;
-}
 
 .seller-management {
-  margin-top: 3.5rem;
+  .seller-content {
+    margin-top: 0 !important;
+  }
   .btn-create {
     margin-bottom: 10px;
     padding: 16px 20px;

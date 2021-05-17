@@ -7,6 +7,7 @@ export const DELETE_CATEGORY = "DELETE_CATEGORY";
 // Product
 export const FETCH_PRODUCTS = "FETCH_PRODUCTS";
 export const FETCH_PRODUCT_DETAIL = "FETCH_PRODUCT_DETAIL";
+export const CREATE_PRODUCT = "CREATE_PRODUCT";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
 
 // Cart

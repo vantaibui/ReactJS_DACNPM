@@ -35,20 +35,28 @@ export const fetchAllProduct = () => {
 };
 
 export const createProduct = (product) => {
-  let formData = new formData();
+  console.log(product);
+  let formData = new FormData();
   formData.append("file", product.file);
   formData.append("name", product.name);
-  formData.append("price", product.price);
+  formData.append("price", parseInt(product.price));
   formData.append("description", product.description);
-  formData.append("evaluate", product.evaluate);
+  formData.append("evaluate", parseInt(product.evaluate));
+  formData.append("exp", product.exp);
+  formData.append("remain", parseInt(product.remain));
   formData.append("category", product.category);
+  formData.append("active", parseInt(product.active));
+
+  console.log(formData.getAll("active"));
+
   return axios({
     url: `${domain}/admin/products`,
     method: "POST",
     data: formData,
     headers: {
-      "Content-Type":
-        "multipart/form-data; boundary=<calculated when request is sent>",
+      "Content-Type": "multipart/form-data",
+      // Accept: "application/json",
+      // type: "formData",
       Authorization: "Bearer " + localStorage.getItem(accessToken),
     },
   });

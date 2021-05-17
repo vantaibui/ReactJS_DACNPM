@@ -112,7 +112,7 @@ const CategoryManagePage = (props) => {
               onToggleForm();
             }}
           >
-            <i class="fa fa-plus"></i>Thêm danh mục
+            <i className="fa fa-plus"></i>Thêm danh mục
           </button>
           <div className="grid__row">
             <div
