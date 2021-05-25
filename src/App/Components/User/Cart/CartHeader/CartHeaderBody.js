@@ -8,18 +8,16 @@ const CartHeaderBody = (props) => {
       return (
         <li key={index} className="header__cart-item">
           <img
-            src="../Asserts/Images/User/smart-watch.jfif"
+            src={product?.productImage}
             alt="abc"
             className="header__cart-item-img"
           />
           <div className="header__cart-item-info">
             <div className="info-head">
-              <h5 className="header__cart-item-name">
-                {product?.product.name}
-              </h5>
+              <h5 className="header__cart-item-name">{product?.productName}</h5>
               <div className="header__cart-item-total">
                 <span className="header__cart-item-price">
-                  {product?.product.price} ₫
+                  {product?.productPrice} ₫
                 </span>
                 <span className="header__cart-item-multiply">x</span>
                 <span className="header__cart-item-quantity">
@@ -29,7 +27,7 @@ const CartHeaderBody = (props) => {
             </div>
             <div className="info-body">
               <span className="header__cart-item-description">
-                Phân loại: {product?.product.category}
+                Phân loại: {product?.productName}
               </span>
               <button className="header__cart-item-remove">Xóa</button>
             </div>

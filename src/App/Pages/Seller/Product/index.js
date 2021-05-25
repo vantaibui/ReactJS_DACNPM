@@ -24,11 +24,22 @@ const ProductManagePage = (props) => {
       exp: "",
       remain: "",
       category: "",
-      active: 1,
+      active: "1",
     },
     onSubmit: (values) => {
-      console.log(values);
-      props.onCreateProduct(values);
+      let data = new FormData();
+      data.append("code", values.code);
+      data.append("name", values.name);
+      data.append("price", values.price);
+      data.append("description", values.description);
+      data.append("evaluate", values.evaluate);
+      data.append("exp", values.exp);
+      data.append("remain", values.remain);
+      data.append("category", values.category);
+      data.append("active", values.active);
+      data.append("file", values.file);
+
+      props.onCreateProduct(data);
     },
   });
 
@@ -51,10 +62,7 @@ const ProductManagePage = (props) => {
         <div className="form-manage__content">
           <div className="form-manage__wrapper">
             <div className="form-manage__inner">
-              <form
-                onSubmit={formik.handleSubmit}
-                enctype="multipart/form-data"
-              >
+              <form onSubmit={formik.handleSubmit}>
                 <div className="manage-form">
                   <div className="manage-form__header">
                     <h3 className="manage-form__heading">Thêm danh mục mới</h3>
@@ -121,19 +129,39 @@ const ProductManagePage = (props) => {
                         </div>
                       </div>
                     </div>
-                    <div className="manage-form__group">
-                      <input
-                        type="date"
-                        className="manage-form__input"
-                        placeholder="Ngày sản xuất"
-                        name="exp"
-                        onChange={formik.handleChange}
-                        value={formik.values.exp}
-                      />
-                      <div className="manage-form__check">
-                        <i className="far fa-check-circle manage-form__check-icon" />
+                    <div className="grid__row">
+                      <div className="grid-column-6">
+                        <div className="manage-form__group">
+                          <input
+                            type="text"
+                            className="manage-form__input"
+                            placeholder="Đánh giá"
+                            name="evaluate"
+                            onChange={formik.handleChange}
+                            value={formik.values.evaluate}
+                          />
+                          <div className="manage-form__check">
+                            <i className="far fa-check-circle manage-form__check-icon" />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="grid-column-6">
+                        <div className="manage-form__group">
+                          <input
+                            type="date"
+                            className="manage-form__input"
+                            placeholder="Ngày sản xuất"
+                            name="exp"
+                            onChange={formik.handleChange}
+                            value={formik.values.exp}
+                          />
+                          <div className="manage-form__check">
+                            <i className="far fa-check-circle manage-form__check-icon" />
+                          </div>
+                        </div>
                       </div>
                     </div>
+
                     <div className="manage-form__group">
                       <input
                         type="text"
@@ -156,7 +184,6 @@ const ProductManagePage = (props) => {
                         onChange={(event) => {
                           formik.setFieldValue("file", event.target.files[0]);
                         }}
-                        value={formik.values.file}
                       />
                       <div className="manage-form__check">
                         <i className="far fa-check-circle manage-form__check-icon" />
@@ -186,6 +213,16 @@ const ProductManagePage = (props) => {
                     >
                       Reset
                     </button>
+                    <button
+                      onClick={() => {
+                        onCloseForm();
+                      }}
+                      type="submit"
+                      id="btn-close"
+                      className="btn btn-reset"
+                    >
+                      Close
+                    </button>
                   </div>
                 </div>
               </form>
@@ -202,6 +239,10 @@ const ProductManagePage = (props) => {
 
   let onToggleForm = () => {
     props.onToggleForm();
+  };
+
+  let onCloseForm = () => {
+    props.onCloseForm();
   };
 
   return (
@@ -265,7 +306,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchProducts: () => {
-      return dispatch(Actions.actionFetchProductsRequest());
+      return dispatch(Actions.actionFetchAllProductRequest());
     },
     onCreateProduct: (values) => {
       return dispatch(Actions.actionCreateProductRequest(values));
@@ -275,6 +316,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     onToggleForm: () => {
       return dispatch(Actions.actionToggleFormRequest());
+    },
+    onCloseForm: () => {
+      return dispatch(Actions.actionCloseFormRequest());
     },
   };
 };

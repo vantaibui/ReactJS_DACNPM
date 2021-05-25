@@ -1,17 +1,19 @@
 import React from "react";
+import { domain } from "../../../Configuration";
 
 const ProductSlideFor = (props) => {
   let { product } = props;
   let renderImage = (images) => {
-    return images.map((image, index) => {
-      console.log(image);
-      return image;
-    });
+    let result = {};
+    for (let index = 0; index < images?.length; index++) {
+      result = images[index].link.slice(30);
+    }
+    return result;
   };
   return (
     <div className="product">
       <img
-        src="https://salt.tikicdn.com/cache/w64/ts/product/e5/06/a5/43d941f6dbb57d573bd4e1c840b2b3bd.jpg"
+        src={`${domain}` + "/uploads/" + renderImage(product?.images)}
         alt="img"
         className="product__img"
       />

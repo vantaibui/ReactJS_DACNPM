@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import Customer from "./Customer";
 
 const CustomerList = () => {
@@ -6,10 +7,10 @@ const CustomerList = () => {
     <div className="customers">
       <div className="card">
         <div className="card-header">
-          <h3>New customer</h3>
-          <button>
-            See all <i className="fas fa-arrow-right" />
-          </button>
+          <h3>Khách hàng</h3>
+          <NavLink exact to="/seller/customers" className="btn-link">
+            Xem thêm <i className="fa fa-arrow-right" />
+          </NavLink>
         </div>
         <div className="card-body">
           <Customer />

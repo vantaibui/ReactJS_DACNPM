@@ -7,7 +7,6 @@ import { CreateAction } from "../CreateAction";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// Notification
 toast.configure();
 
 const notify = (notify) => {
@@ -71,10 +70,22 @@ const resetForm = () => {
 
 export const actionCheckoutRequest = (values) => {
   return (dispatch) => {
-    return Services.checkout(values)
+    return Services.createOrder(values)
       .then((result) => {
         console.log(result.data);
         dispatch(CreateAction(Types.CHECKOUT, result.data));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+export const actionFetchOrderByUserID = (userID) => {
+  return (dispatch) => {
+    return Services.fetchOrderByUserID(userID)
+      .then((result) => {
+        dispatch(CreateAction(Types.FETCH_ORDER, result.data));
       })
       .catch((err) => {
         console.log(err);
@@ -127,7 +138,6 @@ export const actionConfirmOTPRequest = (otp) => {
   return (dispatch) => {
     return Services.confirmOTP(otp)
       .then((result) => {
-        console.log(result.data);
         dispatch(CreateAction(Types.CONFIRM_OTP, result.data));
         localStorage.removeItem("Register");
         notify("REGISTER_SUCCESS");
@@ -141,7 +151,6 @@ export const actionConfirmOTPRequest = (otp) => {
         }, 3500);
       })
       .catch((err) => {
-        console.log(err);
         resetForm();
         notify("REGISTER_FAILED");
       });

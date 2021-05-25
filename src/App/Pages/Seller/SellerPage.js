@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 
 import * as Actions from "../../Redux/Actions";
 
-import Header from "../../Layouts/Seller/Header";
 import RevenueStatistics from "../../Components/Seller/RevenueStatistics";
 import Categories from "../../Components/Seller/Category/Categories";
 import Orders from "../../Components/Seller/Order/Orders";
@@ -21,13 +20,15 @@ const SellerPage = (props) => {
     <>
       <main>
         <RevenueStatistics />
+
         <div className="recent-flex">
           <Categories categories={categories} />
-          <CustomerList />
         </div>
         <div className="recent-flex">
           <ProductList products={products} />
-          <Orders />
+        </div>
+        <div className="recent-flex">
+          <CustomerList />
         </div>
       </main>
     </>
@@ -46,12 +47,12 @@ const mapDispatchToProps = (dispatch) => {
     fetchCategories: () => {
       return dispatch(Actions.actionFetchCategoriesRequest());
     },
-    // fetchProducts: () => {
-    //   return dispatch(Actions.actionFetchAllProductRequest());
-    // },
     fetchProducts: () => {
-      return dispatch(Actions.actionFetchProductsRequest());
+      return dispatch(Actions.actionFetchAllProductRequest());
     },
+    // fetchProducts: () => {
+    //   return dispatch(Actions.actionFetchProductsRequest());
+    // },
   };
 };
 

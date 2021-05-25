@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { domain } from "../../../../Configuration";
 
 const ProductItem = (props) => {
   let { product } = props;
@@ -63,13 +64,10 @@ const ProductItem = (props) => {
   };
 
   let renderImage = (images) => {
-    let result;
-    for (const i in images) {
-      if (i === 0) {
-        result = images[i].link;
-      }
+    let result = {};
+    for (let index = 0; index < images?.length; index++) {
+      result = images[0].link;
     }
-
     return result;
   };
 
@@ -83,19 +81,18 @@ const ProductItem = (props) => {
       >
         <div
           style={{
-            backgroundImage:
-              "url(https://cdn.tgdd.vn/Products/Images/2513/236952/bhx/gao-thom-hat-ngoc-troi-thien-vuong-tui-5kg-202104261519374512_300x300.jpeg)",
+            backgroundImage: `url(${renderImage(product?.images)})`,
           }}
           className="home-product__item-img"
         />
         <div className="home-product__item-info">
-          <h4 className="home-product__item-name">{product.name}</h4>
+          <h4 className="home-product__item-name">{product?.name}</h4>
           <div className="home-product__item-price">
             <span className="home-product__item-price-old">
-              {product.remain} còn lại
+              {product?.remain} còn lại
             </span>
             <span className="home-product__item-price-current">
-              {product.price} ₫
+              {product?.price} ₫
             </span>
           </div>
           <div className="home-product__item-action">
@@ -104,10 +101,10 @@ const ProductItem = (props) => {
               <i className="fas fa-heart home-product__item-heart-icon-fill" />
             </span>
             <span className="home-product__item-action-rating">
-              {renderRating(product.evaluate)}
+              {renderRating(product?.evaluate)}
             </span>
             {/* <span className="home-product__item-action-sold">
-              {product.remain} còn lại
+              {product?.remain} còn lại
             </span> */}
           </div>
         </div>

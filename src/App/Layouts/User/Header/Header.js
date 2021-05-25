@@ -32,7 +32,10 @@ const Header = (props) => {
   let quantityProductInCart = (products) => {
     let result = 0;
     for (let index in products) {
-      result = index + 1;
+      if (index === 0) {
+        result = 0;
+      }
+      result = parseInt(index) + 1;
     }
     return result;
   };
@@ -243,12 +246,22 @@ const Header = (props) => {
                 </span>
                 <ul className="header__navbar-user-menu">
                   <li className="header__navbar-user-item">
-                    <a className="header__navbar-user-link">
+                    <NavLink
+                      exact
+                      to="/profile"
+                      className="header__navbar-user-link"
+                    >
                       Tài khoản của tôi
-                    </a>
+                    </NavLink>
                   </li>
                   <li className="header__navbar-user-item">
-                    <a className="header__navbar-user-link">Đơn mua</a>
+                    <NavLink
+                      exact
+                      to={`/user/${credentials?.id}/orders`}
+                      className="header__navbar-user-link"
+                    >
+                      Đơn hàng
+                    </NavLink>
                   </li>
                   <li className="header__navbar-user-item header__navbar-user-item--separate">
                     <a

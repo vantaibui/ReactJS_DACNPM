@@ -1,8 +1,6 @@
 import * as Types from "../Types/ActionType";
 
-let data = JSON.parse(localStorage.getItem("Cart"));
-
-let initialState = data ? data : [];
+let initialState = [];
 
 let findProductInCart = (product, cart) => {
   let result = -1;
@@ -19,35 +17,24 @@ let findProductInCart = (product, cart) => {
 const CartReducer = (state = initialState, action) => {
   let index = -1;
   switch (action.type) {
+    case Types.FETCH_PRODUCT_IN_CART: {
+      state = action.payload;
+      return [...state];
+    }
     case Types.ADD_PRODUCT_TO_CART: {
-      index = findProductInCart(action.param_1, state);
-      if (index !== -1) {
-        state[index].quantity += action.param_2;
-      } else {
-        state.push({
-          product: action.param_1,
-          quantity: action.param_2,
-        });
-      }
-      localStorage.setItem("Cart", JSON.stringify(state));
+      console.log(action);
       return [...state];
     }
     case Types.DELETE_PRODUCT_IN_CART: {
-      index = findProductInCart(action.payload, state);
-      if (index !== -1) {
-        state.splice(index, 1);
-      }
-      localStorage.setItem("Cart", JSON.stringify(state));
+      let { payload } = action;
+      console.log(payload);
       return [...state];
     }
     case Types.UPDATE_PRODUCT_IN_CART: {
-      index = findProductInCart(action.param_1, state);
-      if (index !== -1) {
-        state[index].quantity = action.param_2;
-      }
-      localStorage.setItem("Cart", JSON.stringify(state));
+      console.log(action.payload);
       return [...state];
     }
+
     default:
       return [...state];
   }

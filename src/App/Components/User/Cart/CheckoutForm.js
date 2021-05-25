@@ -12,7 +12,7 @@ const CheckoutForm = (props) => {
           <span className="checkout__subtotal-total">
             {products.reduce((total, product, index) => {
               return (total += parseInt(
-                product?.product.price * product?.quantity
+                product?.productPrice * product?.quantity
               ));
             }, 0)}
             <span className="cart-table__body-currency">₫</span>
@@ -23,7 +23,7 @@ const CheckoutForm = (props) => {
           <span className="checkout__subtotal-total">
             {products.reduce((total, product, index) => {
               return (total += parseInt(
-                product?.product.price * product?.quantity
+                product?.productPrice * product?.quantity
               ));
             }, 0)}
             <span className="cart-table__body-currency">₫</span>

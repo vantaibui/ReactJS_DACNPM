@@ -22,6 +22,10 @@ const UserReducer = (state = initialState, action) => {
       state.accessToken = action.payload;
       return { ...state };
     }
+    case Types.FETCH_ORDER: {
+      state.orders = action.payload;
+      return { ...state };
+    }
 
     default:
       return state;

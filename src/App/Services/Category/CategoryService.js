@@ -16,8 +16,6 @@ export const fetchCategoryDetailById = (id) => {
 };
 
 export const createCategory = (data) => {
-  console.log(data);
-  console.log("Bearer " + localStorage.getItem(accessToken));
   return axios({
     url: `${domain}/categories`,
     method: "POST",

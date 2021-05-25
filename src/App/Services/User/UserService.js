@@ -1,4 +1,5 @@
 import axios from "axios";
+import * as yup from "yup";
 import { domain } from "../../Configuration";
 
 export const login = (data) => {
@@ -36,7 +37,6 @@ export const confirmOTP = (otp) => {
   });
 };
 
-// Forget password
 export const checkEmail = (email) => {
   return axios({
     url: `${domain}/forget`,
@@ -53,10 +53,20 @@ export const resetPassword = (pass) => {
   });
 };
 
-export const checkout = (values) => {
+export const fetchOrderByUserID = (userID) => {
   return axios({
-    url: `${domain}/checkout`,
-    method: "POST",
-    data: values,
+    url: `${domain}/user/${userID}/orders`,
+    method: "GET",
   });
 };
+
+export const signUpSchema = yup.object().shape({
+  username: yup.string().required("Tên tài khoản không được bỏ trống!"),
+  email: yup
+    .string()
+    .email("Email không hợp lệ!")
+    .required("Email không được bỏ trống!"),
+  password: yup.string().required("Không được bỏ trống!"),
+  address: "",
+  phone: yup.string().length(10).required("Không được để trống!"),
+});

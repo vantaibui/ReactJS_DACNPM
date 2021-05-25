@@ -114,6 +114,15 @@
             background: #ee4d2d;
             transition: all 0.2s;
           }
+          .authentication-form__forget {
+            margin-top: -20px;
+            .authentication-form__link {
+              text-decoration: none;
+              color: #05a;
+              font-size: 12px;
+              font-weight: 400;
+            }
+          }
           .authentication-form__separate {
             padding-bottom: 14px;
             display: flex;

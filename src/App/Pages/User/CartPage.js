@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 
 import * as Actions from "../../Redux/Actions";
@@ -8,14 +8,27 @@ import TableHead from "../../Components/User/Cart/TableHead";
 import CheckoutForm from "../../Components/User/Cart/CheckoutForm";
 
 const CartPage = (props) => {
-  let { products } = props;
+  let { credentials, productInCart } = props;
 
-  let onDeleteProductInCart = (id) => {
-    props.onDeleteProductInCart(id);
+  useEffect(() => {
+    props.fetchProductInCart(credentials?.id);
+  }, []);
+
+  let onUpdateProductInCart = (productID, action) => {
+    let values = {
+      userID: credentials?.id,
+      productID: productID,
+      action: action,
+    };
+    props.onUpdateProductInCart(values);
   };
 
-  let onUpdateProductInCart = (product, quantity) => {
-    props.onUpdateProductInCart(product, quantity);
+  let onDeleteProductInCart = (productID) => {
+    let values = {
+      userID: credentials?.id,
+      productID: productID,
+    };
+    props.onDeleteProductInCart(values);
   };
 
   return (
@@ -27,7 +40,7 @@ const CartPage = (props) => {
               <table className="cart-table">
                 <TableHead />
                 <TableBody
-                  products={products}
+                  products={productInCart}
                   onDeleteProductInCart={onDeleteProductInCart}
                   onUpdateProductInCart={onUpdateProductInCart}
                 />
@@ -50,7 +63,7 @@ const CartPage = (props) => {
             </div>
           </div>
           <div className="grid-column-6">
-            <CheckoutForm products={products} />
+            <CheckoutForm products={productInCart} />
           </div>
         </div>
       </div>
@@ -60,19 +73,21 @@ const CartPage = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    products: state.CartReducer,
+    credentials: state.UserReducer.credentials,
+    productInCart: state.CartReducer,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onDeleteProductInCart: (product) => {
-      return dispatch(Actions.actionDeleteProductInCartRequest(product));
+    fetchProductInCart: (userID) => {
+      return dispatch(Actions.actionFetchProductInCartByUserID(userID));
     },
-    onUpdateProductInCart: (product, quantity) => {
-      return dispatch(
-        Actions.actionUpdateProductInCartRequest(product, quantity)
-      );
+    onUpdateProductInCart: (values) => {
+      return dispatch(Actions.actionUpdateProductInCartRequest(values));
+    },
+    onDeleteProductInCart: (values) => {
+      return dispatch(Actions.actionDeleteProductInCartRequest(values));
     },
   };
 };

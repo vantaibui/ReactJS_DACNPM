@@ -21,7 +21,6 @@ const Product = (props) => {
         <input
           type="checkbox"
           checked={product?.active ? "checked" : ""}
-          checked
           readOnly
         />
       </td>

@@ -1,30 +1,35 @@
-import React from "react";
+import React, { Fragment, Suspense, lazy } from "react";
 import "./App/Sass/Main.scss";
-import HomePage from "./App/Pages/User/HomePage";
-import AdminPage from "./App/Pages/Admin/AdminPage";
-import SellerPage from "./App/Pages/Seller/SellerPage";
-import Detail from "./App/Pages/User/DetailPage";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { Fragment } from "react";
 import routes from "./App/Routes";
+import Loading from "./App/Components/Loading";
 
-import HomeTemplate from "./App/Templates/User";
-import SellerTemplate from "./App/Templates/Seller";
-import AdminTemplate from "./App/Templates/Admin";
+const HomeTemplate = lazy(() => import("./App/Templates/User"));
+const SellerTemplate = lazy(() => import("./App/Templates/Seller"));
+const AdminTemplate = lazy(() => import("./App/Templates/Admin"));
 
-import LoginPage from "./App/Pages/User/LoginPage";
-import RegisterPage from "./App/Pages/User/RegisterPage";
-import ConfirmOTPPage from "./App/Pages/User/ConfirmOTPPage";
-import ForgetPassPage from "./App/Pages/User/ForgetPassPage";
-import ResetPassPage from "./App/Pages/User/ResetPassPage";
+const LoginPage = lazy(() => import("./App/Pages/User/LoginPage"));
+const RegisterPage = lazy(() => import("./App/Pages/User/RegisterPage"));
+const ConfirmOTPPage = lazy(() => import("./App/Pages/User/ConfirmOTPPage"));
+const ForgetPassPage = lazy(() => import("./App/Pages/User/ForgetPassPage"));
+const ResetPassPage = lazy(() => import("./App/Pages/User/ResetPassPage"));
 
-import CartPage from "./App/Pages/User/CartPage";
-import PaymentPage from "./App/Pages/User/PaymentPage";
-import CategoryPage from "./App/Pages/User/CategoryPage";
+const HomePage = lazy(() => import("./App/Pages/User/HomePage"));
+const AdminPage = lazy(() => import("./App/Pages/Admin/AdminPage"));
+const SellerPage = lazy(() => import("./App/Pages/Seller/SellerPage"));
 
-import ProductManagePage from "./App/Pages/Seller/Product/";
-import CategoryManagePage from "./App/Pages/Seller/Category/";
-import CreateCategoryForm from "./App/Components/Seller/Form/CreateCategoryForm";
+const DetailPage = lazy(() => import("./App/Pages/User/DetailPage"));
+const CategoryPage = lazy(() => import("./App/Pages/User/CategoryPage"));
+
+const CartPage = lazy(() => import("./App/Pages/User/CartPage"));
+const PaymentPage = lazy(() => import("./App/Pages/User/PaymentPage"));
+const OrderPage = lazy(() => import("./App/Pages/User/OrderPage"));
+
+const ProductManagePage = lazy(() => import("./App/Pages/Seller/Product/"));
+const CategoryManagePage = lazy(() => import("./App/Pages/Seller/Category/"));
+const RevenueStatistics = lazy(() =>
+  import("./App/Pages/Seller/Revenue-Statistics")
+);
 
 const App = () => {
   let showRoutes = (routes) => {
@@ -74,69 +79,73 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <Fragment>
-        <Switch>
-          {/* Home */}
-          <HomeTemplate exact path="/" Component={HomePage} />
+      <Suspense fallback={<Loading />}>
+        <Fragment>
+          <Switch>
+            {/* Home */}
+            <HomeTemplate exact path="/" Component={HomePage} />
 
-          <HomeTemplate exact path="/products/id/:id" Component={Detail} />
+            <HomeTemplate
+              exact
+              path="/products/id/:id"
+              Component={DetailPage}
+            />
 
-          {/* <HomeTemplate exact path="/products/code/:code" Component={Detail} /> */}
+            {/* <HomeTemplate exact path="/products/code/:code" Component={DetailPage} /> */}
 
-          <HomeTemplate
-            exact
-            path="/products/category/:id"
-            Component={CategoryPage}
-          />
+            <HomeTemplate
+              exact
+              path="/products/category/:id"
+              Component={CategoryPage}
+            />
 
-          <HomeTemplate exact path="/cart" Component={CartPage} />
+            <HomeTemplate exact path="/cart" Component={CartPage} />
 
-          <HomeTemplate exact path="/payment" Component={PaymentPage} />
+            <HomeTemplate exact path="/payment" Component={PaymentPage} />
 
-          {/* Seller */}
-          <SellerTemplate exact path="/seller" Component={SellerPage} />
+            <HomeTemplate
+              exact
+              path="/user/:userID/orders"
+              Component={OrderPage}
+            />
 
-          <SellerTemplate
-            exact
-            path="/seller/categories"
-            Component={CategoryManagePage}
-          />
+            {/* Seller */}
+            <SellerTemplate exact path="/seller" Component={SellerPage} />
 
-          <SellerTemplate
-            exact
-            path="/seller/products"
-            Component={ProductManagePage}
-          />
+            <SellerTemplate
+              exact
+              path="/seller/categories"
+              Component={CategoryManagePage}
+            />
 
-          <SellerTemplate
-            exact
-            path="/seller/create-category"
-            Component={CreateCategoryForm}
-          />
+            <SellerTemplate
+              exact
+              path="/seller/products"
+              Component={ProductManagePage}
+            />
 
-          <SellerTemplate
-            exact
-            path="/seller/create-product"
-            Component={CreateCategoryForm}
-          />
+            <SellerTemplate
+              exact
+              path="/seller/revenue-statistics"
+              Component={RevenueStatistics}
+            />
 
-          {/* Admin */}
-          <AdminTemplate exact path="/admin" Component={AdminPage} />
+            {/* Admin */}
+            <AdminTemplate exact path="/admin" Component={AdminPage} />
 
-          {/* Authentication */}
-          <Route exact path="/login" component={LoginPage} />
+            {/* Authentication */}
+            <Route exact path="/login" component={LoginPage} />
 
-          <Route exact path="/register" component={RegisterPage} />
+            <Route exact path="/register" component={RegisterPage} />
 
-          <Route exact path="/confirmOTP" component={ConfirmOTPPage} />
+            <Route exact path="/confirmOTP" component={ConfirmOTPPage} />
 
-          <Route exact path="/forgetPassword" component={ForgetPassPage} />
+            <Route exact path="/forgetPassword" component={ForgetPassPage} />
 
-          <Route exact path="/resetPassword" component={ResetPassPage} />
-
-          {/* {showRoutes(routes)} */}
-        </Switch>
-      </Fragment>
+            <Route exact path="/resetPassword" component={ResetPassPage} />
+          </Switch>
+        </Fragment>
+      </Suspense>
     </BrowserRouter>
   );
 };

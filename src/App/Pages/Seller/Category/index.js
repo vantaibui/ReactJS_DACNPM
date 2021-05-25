@@ -19,7 +19,6 @@ const CategoryManagePage = (props) => {
       description: "",
     },
     onSubmit: (values) => {
-      console.log(values);
       props.onCreateCategory(values);
     },
   });
@@ -94,7 +93,6 @@ const CategoryManagePage = (props) => {
   };
 
   let onDeleteCategory = (id) => {
-    console.log(id);
     props.onDeleteCategory(id);
   };
 

@@ -1,9 +1,18 @@
 import React from "react";
 
 const ProductDescription = (props) => {
-  let { productDetail } = props;
-  let onAddProductToCart = (product) => {
-    props.onAddProductToCart(product);
+  let { credentials, productDetail } = props;
+
+  // let onAddProductToCart = (userID, productID, productPrice, quantity) => {
+  //   props.onAddProductToCart(userID, productID, productPrice, quantity);
+  // };
+
+  let onAddProductToCart = (productID) => {
+    let values = {
+      product: productID,
+      qty: 1,
+    };
+    props.onAddProductToCart(values);
   };
 
   let renderRating = (rating) => {
@@ -83,7 +92,7 @@ const ProductDescription = (props) => {
         </div>
         <button
           onClick={() => {
-            onAddProductToCart(productDetail);
+            onAddProductToCart(productDetail?.id);
           }}
           className="product-description__add-cart"
         >

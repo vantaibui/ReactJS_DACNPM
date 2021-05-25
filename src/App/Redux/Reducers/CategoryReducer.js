@@ -17,7 +17,6 @@ const CategoryReducer = (state = initialState, action) => {
       return { ...state };
     }
     case Types.CREATE_CATEGORY: {
-      console.log(action.payload);
       state.categories.push(action.payload);
       return { ...state };
     }

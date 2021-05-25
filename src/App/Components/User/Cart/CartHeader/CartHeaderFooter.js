@@ -10,7 +10,7 @@ const CartHeaderFooter = (props) => {
         <span className="total-item__value">
           {products.reduce((total, product, index) => {
             return (total += parseInt(
-              product?.product.price * product?.quantity
+              product?.productPrice * product?.quantity
             ));
           }, 0)}{" "}
           ₫

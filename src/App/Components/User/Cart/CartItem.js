@@ -3,28 +3,22 @@ import React from "react";
 const CartItem = (props) => {
   let { product } = props;
 
-  let onDeleteProductInCart = (product) => {
-    props.onDeleteProductInCart(product);
+  let onUpdateProductInCart = (productID, action) => {
+    props.onUpdateProductInCart(productID, action);
   };
 
-  let onUpdateProductInCart = (product, quantity) => {
-    if (quantity > 0) {
-      props.onUpdateProductInCart(product, quantity);
-    }
+  let onDeleteProductInCart = (productID) => {
+    props.onDeleteProductInCart(productID);
   };
 
   return (
     <tr className="cart-table__body-row">
       <td className="cart-table__body-item">
-        <img
-          src="../Assets/Images/User/product-details-1.jpg"
-          alt="img"
-          className="item__img"
-        />
-        <h5 className="item__name">{product?.product.name}</h5>
+        <img src={product?.productImage} alt="img" className="item__img" />
+        <h5 className="item__name">{product?.productName}</h5>
       </td>
       <td className="cart-table__body-price">
-        {product.product.price}
+        {product?.productPrice}
         <span className="cart-table__body-currency">₫</span>
       </td>
       <td className="cart-table__body-quantity">
@@ -32,7 +26,7 @@ const CartItem = (props) => {
           <div className="quantity__inner">
             <span
               onClick={() => {
-                onUpdateProductInCart(product.product, product?.quantity - 1);
+                onUpdateProductInCart(product?.productID, "decrease");
               }}
               className="quantity__btn"
             >
@@ -42,7 +36,7 @@ const CartItem = (props) => {
             <span className="quantity__value"> {product?.quantity} </span>
             <span
               onClick={() => {
-                onUpdateProductInCart(product.product, product?.quantity + 1);
+                onUpdateProductInCart(product?.productID, "increase");
               }}
               className="quantity__btn"
             >
@@ -53,13 +47,13 @@ const CartItem = (props) => {
         </div>
       </td>
       <td className="cart-table__body-total">
-        {product?.product.price * product?.quantity}
+        {product?.productPrice * product?.quantity}
         <span className="cart-table__body-currency">₫</span>
       </td>
       <td className="cart-table__body-delete">
         <i
           onClick={() => {
-            onDeleteProductInCart(product?.product);
+            onDeleteProductInCart(product?.productID);
           }}
           className="fa fa-times cart-table__body-icon"
         />

@@ -17,43 +17,43 @@ const Sidebar = () => {
             <li>
               <NavLink exact to="/seller">
                 <i className="fa fa-igloo" />
-                <span>Dashboard</span>
+                <span>Quản lí</span>
               </NavLink>
             </li>
             <li>
               <NavLink exact to="/seller/customers">
                 <i className="fa fa-users" />
-                <span>Customer</span>
+                <span>Khách hàng</span>
               </NavLink>
             </li>
             <li>
               <NavLink exact to="/seller/categories">
                 <i className="fa fa-clipboard-list" />
-                <span>Category</span>
+                <span>Danh mục</span>
               </NavLink>
             </li>
             <li>
               <NavLink exact to="/seller/products">
                 <i className="fa fa-clipboard-list" />
-                <span>Product</span>
+                <span>Sản phẩm</span>
               </NavLink>
             </li>
             <li>
               <NavLink exact to="/seller/orders">
                 <i className="fa fa-shopping-bag" />
-                <span>Order</span>
+                <span>Đơn hàng</span>
               </NavLink>
             </li>
             <li>
               <NavLink exact to="/seller/revenue-statistics">
                 <i className="fa fa-receipt" />
-                <span>Revenue Statistics</span>
+                <span>Thống kê doanh thu</span>
               </NavLink>
             </li>
             <li>
               <NavLink exact to="/seller/account">
                 <i className="fa fa-user-circle" />
-                <span>Accounts</span>
+                <span>Tài khoản</span>
               </NavLink>
             </li>
           </ul>

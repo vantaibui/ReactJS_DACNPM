@@ -11,11 +11,12 @@ import HomeFilter from "../../Components/User/Filter/HomeFilter";
 import SliderNotification from "../../Components/User/Slider/SliderNotification";
 
 const HomePage = (props) => {
-  let { products, categories } = props;
+  let { credentials, products, categories } = props;
 
   useEffect(() => {
     props.fetchProducts();
     props.fetchCategories();
+    props.fetchProductInCart(credentials?.id);
   }, []);
 
   return (
@@ -45,6 +46,7 @@ const HomePage = (props) => {
 
 const mapStateToProps = (state) => {
   return {
+    credentials: state.UserReducer.credentials,
     products: state.ProductReducer.products,
     categories: state.CategoryReducer.categories,
   };
@@ -56,6 +58,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     fetchCategories: () => {
       return dispatch(Actions.actionFetchCategoriesRequest());
+    },
+    fetchProductInCart: (userID) => {
+      return dispatch(Actions.actionFetchProductInCartByUserID(userID));
     },
   };
 };

@@ -1,17 +1,19 @@
 import React from "react";
+import { domain } from "../../../Configuration";
 
 const ProductSliderNav = (props) => {
   let { product } = props;
   let renderImage = (images) => {
-    return images?.map((image, index) => {
-      return image.link;
-    });
+    let result = {};
+    for (let index = 0; index < images?.length; index++) {
+      result = images[index].link.slice(30);
+    }
+    return result;
   };
   return (
     <div className="product-nav">
       <img
-        src="https://cdn.tgdd.vn/Products/Images/8784/231575/bhx/cai-ngot-4kfarm-tui-300g-202011271707356654.jpg"
-        // src="ac"
+        src={`${domain}` + "/uploads/" + renderImage(product?.images)}
         alt="img"
         className="product-nav__img"
       />

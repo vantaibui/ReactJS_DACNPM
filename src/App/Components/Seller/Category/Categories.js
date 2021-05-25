@@ -4,7 +4,6 @@ import Category from "./Category";
 
 const Categories = (props) => {
   let { categories } = props;
-  console.log(categories);
 
   let renderCategory = (categories) => {
     let result;

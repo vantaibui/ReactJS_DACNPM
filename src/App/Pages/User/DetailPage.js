@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 
 import Slider from "react-slick";
-import $ from "jquery";
+import "jquery";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -12,8 +12,7 @@ import ProductSlideFor from "../../Components/User/Detail/ProductSlideFor";
 import ProductSliderNav from "../../Components/User/Detail/ProductSliderNav";
 
 const Detail = (props) => {
-  let { productDetail } = props;
-  console.log(productDetail);
+  let { productDetail, credentials } = props;
 
   const settingSliderFor = {
     infinite: true,
@@ -69,8 +68,8 @@ const Detail = (props) => {
     props.onProductDetail(value);
   }, []);
 
-  let onAddProductToCart = (product) => {
-    props.onAddProductToCart(product);
+  let onAddProductToCart = (values) => {
+    props.onAddProductToCart(credentials?.id, values);
   };
 
   return (
@@ -97,6 +96,7 @@ const Detail = (props) => {
           </div>
           <div className="grid-column-6">
             <ProductDescription
+              credentials={credentials}
               productDetail={productDetail}
               onAddProductToCart={onAddProductToCart}
             />
@@ -115,6 +115,7 @@ const mapStateToProps = (state) => {
       description: "",
     },
     productInCart: state.CartReducer,
+    credentials: state.UserReducer.credentials,
   };
 };
 
@@ -124,13 +125,12 @@ const mapDispatchToProps = (dispatch) => {
       return dispatch(Actions.actionFetchProductDetailByIdRequest(value));
       // return dispatch(Actions.actionFetchProductDetailByCodeRequest(value));
     },
-    onAddProductToCart: (product) => {
-      return dispatch(Actions.actionAddProductToCartRequest(product, 1));
+    onAddProductToCart: (userID, values) => {
+      return dispatch(Actions.actionAddProductToCartRequest(userID, values));
     },
     onUpdateProductInCart: (product, quantity) => {
-      return dispatch(
-        Actions.actionUpdateProductInCartRequest(product, quantity)
-      );
+      return dispatch();
+      // Actions.actionUpdateProductInCartRequest(product, quantity)
     },
   };
 };
