@@ -13,7 +13,6 @@ const ForgetPassPage = (props) => {
       email: "",
     },
     onSubmit: (values) => {
-      console.log(values);
       props.onForgetPassword(values);
       document.getElementById("btn-reset").click();
     },

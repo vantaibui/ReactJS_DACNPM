@@ -16,6 +16,7 @@ const UserReducer = (state = initialState, action) => {
       return { ...state };
     }
     case Types.REGISTER: {
+      state.accessToken = action.payload.token;
       return { ...state };
     }
     case Types.FORGOT_PASSWORD: {

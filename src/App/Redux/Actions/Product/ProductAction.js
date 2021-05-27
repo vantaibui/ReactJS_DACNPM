@@ -1,5 +1,5 @@
 import * as Types from "../../Types/ActionType";
-import { CreateAction, CreateActionParams } from "../CreateAction";
+import { CreateAction } from "../CreateAction";
 import * as Services from "../../../Services";
 
 import { toast } from "react-toastify";

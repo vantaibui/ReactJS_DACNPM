@@ -28,7 +28,11 @@ const CartItem = (props) => {
               onClick={() => {
                 onUpdateProductInCart(product?.productID, "decrease");
               }}
-              className="quantity__btn"
+              className={
+                product?.quantity <= 1
+                  ? "quantity__btn btn-disable"
+                  : "quantity__btn"
+              }
             >
               {" "}
               -{" "}

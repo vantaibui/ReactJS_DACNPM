@@ -81,6 +81,9 @@
           height: 52px;
           background: #f5f5f5;
           .quantity__btn {
+            &.btn-disable {
+              cursor: not-allowed !important;
+            }
             flex: 1;
             width: 15px;
             font-size: 16px;

@@ -5,9 +5,10 @@ import * as Actions from "../../Redux/Actions";
 
 import RevenueStatistics from "../../Components/Seller/RevenueStatistics";
 import Categories from "../../Components/Seller/Category/Categories";
-import Orders from "../../Components/Seller/Order/Orders";
 import ProductList from "../../Components/Seller/Product/ProductList";
 import CustomerList from "../../Components/Seller/Customer/CustomerList";
+import { user_login } from "../../Configuration";
+import { Redirect } from "react-router";
 
 const SellerPage = (props) => {
   let { categories, products } = props;
@@ -16,8 +17,9 @@ const SellerPage = (props) => {
     props.fetchCategories();
     props.fetchProducts();
   }, []);
-  return (
-    <>
+
+  let renderUI = () => {
+    return (
       <main>
         <RevenueStatistics />
 
@@ -31,8 +33,16 @@ const SellerPage = (props) => {
           <CustomerList />
         </div>
       </main>
-    </>
-  );
+    );
+  };
+
+  let role = JSON.parse(localStorage.getItem(user_login)).role;
+
+  if (role !== "ROLE_ADMIN") {
+    return alert("Bạn không đủ quyền truy cập!"), (<Redirect to="/" />);
+  }
+
+  return renderUI();
 };
 
 const mapStateToProps = (state) => {

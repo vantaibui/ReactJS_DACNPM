@@ -46,9 +46,9 @@ const Header = (props) => {
         <nav className="header__navbar">
           <ul className="header__navbar-list">
             <li className="header__navbar-item header__navbar-item--separate">
-              <a href="#" className="header__navbar-item-link">
+              <NavLink exact to="/seller" className="header__navbar-item-link">
                 Kênh người bán
-              </a>
+              </NavLink>
             </li>
             <li className="header__navbar-item header__navbar-item--form-toggle header__navbar-item--separate">
               Tải ứng dụng

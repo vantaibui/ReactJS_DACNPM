@@ -9,6 +9,7 @@ import { Redirect } from "react-router";
 
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { NavLink } from "react-router-dom";
 
 toast.configure();
 
@@ -120,6 +121,14 @@ const PaymentPage = (props) => {
                     <button type="submit" className="checkout__order-btn">
                       Đặt hàng
                     </button>
+                    <NavLink
+                      exact
+                      to={`/user/${credentials?.id}/orders`}
+                      className="btn btn-reset"
+                      id="go-back"
+                    >
+                      Đơn hàng
+                    </NavLink>
                   </div>
                 </div>
               </div>

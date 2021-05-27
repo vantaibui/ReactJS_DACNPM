@@ -1,19 +1,34 @@
-import React from "react";
+import { useFormik } from "formik";
+import React, { useState } from "react";
 
 const ProductDescription = (props) => {
   let { credentials, productDetail } = props;
 
-  // let onAddProductToCart = (userID, productID, productPrice, quantity) => {
-  //   props.onAddProductToCart(userID, productID, productPrice, quantity);
-  // };
+  const [quantity, setQuantity] = useState(1);
 
-  let onAddProductToCart = (productID) => {
-    let values = {
-      product: productID,
-      qty: 1,
-    };
-    props.onAddProductToCart(values);
+  let updateQuantity = (action, quantity) => {
+    if (quantity >= 1) {
+      if (action === "increase") {
+        return setQuantity(quantity + 1);
+      } else if (action === "decrease") {
+        return setQuantity(quantity - 1);
+      }
+    }
   };
+
+  const formik = useFormik({
+    initialValues: {
+      product: productDetail?.id,
+      qty: 1,
+    },
+    onSubmit: () => {
+      let values = {
+        product: productDetail?.id,
+        qty: quantity,
+      };
+      props.onAddProductToCart(values);
+    },
+  });
 
   let renderRating = (rating) => {
     let result;
@@ -82,23 +97,44 @@ const ProductDescription = (props) => {
         <span className="product-description__price-currency">₫</span>
       </div>
       <p className="product-description__des">{productDetail?.description}</p>
-      <div className="product-description__quantity">
-        <div className="quantity">
-          <div className="quantity__inner">
-            <span className="quantity__btn"> - </span>
-            <span className="quantity__value"> 1 </span>
-            <span className="quantity__btn"> + </span>
+      <form onSubmit={formik.handleSubmit}>
+        <div className="product-description__quantity">
+          <div className="quantity">
+            <div className="quantity__inner">
+              <span
+                className="quantity__btn"
+                onClick={() => {
+                  updateQuantity("decrease", quantity);
+                }}
+              >
+                {" "}
+                -{" "}
+              </span>
+              <span
+                className="quantity__value"
+                name="qty"
+                onChange={formik.handleChange}
+                values={formik.values.qty}
+              >
+                {quantity}
+              </span>
+
+              <span
+                className="quantity__btn"
+                onClick={() => {
+                  updateQuantity("increase", quantity);
+                }}
+              >
+                {" "}
+                +{" "}
+              </span>
+            </div>
           </div>
+          <button type="submit" className="product-description__add-cart">
+            Thêm vào giỏ hàng
+          </button>
         </div>
-        <button
-          onClick={() => {
-            onAddProductToCart(productDetail?.id);
-          }}
-          className="product-description__add-cart"
-        >
-          Thêm vào giỏ hàng
-        </button>
-      </div>
+      </form>
       <ul className="product-description__ul">
         <li className="product-description__li">
           <span className="product-description__title">Danh mục</span>

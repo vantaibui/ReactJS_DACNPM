@@ -1,5 +1,5 @@
 import React from "react";
-import { ErrorMessage, useFormik } from "formik";
+import { useFormik } from "formik";
 import { connect } from "react-redux";
 
 import * as Actions from "../../Redux/Actions";
@@ -17,7 +17,7 @@ const RegisterPage = (props) => {
       address: "",
       phone: "",
       role: "ROLE_USER",
-      active: 0,
+      active: 1,
     },
     validationSchema: Yup.object({
       username: Yup.string()

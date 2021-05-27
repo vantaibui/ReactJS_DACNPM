@@ -4,6 +4,7 @@ import { CreateAction } from "../CreateAction";
 
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { user_login } from "../../../Configuration";
 
 toast.configure();
 
@@ -59,6 +60,11 @@ export const actionAddProductToCartRequest = (userID, data) => {
       .then((result) => {
         dispatch(CreateAction(Types.ADD_PRODUCT_TO_CART, result.data));
         notify("ADD_PRODUCT_TO_CART");
+        return dispatch(
+          actionFetchProductInCartByUserID(
+            JSON.parse(localStorage.getItem(user_login)).id
+          )
+        );
       })
       .catch((err) => {
         notify("PRODUCT_ALREADY_IN_CART");
@@ -70,11 +76,19 @@ export const actionUpdateProductInCartRequest = (values) => {
   return (dispatch) => {
     return Services.updateProductInCart(values)
       .then((result) => {
-        console.log("Update: " + result);
         dispatch(CreateAction(Types.UPDATE_PRODUCT_IN_CART, result.data));
+        return dispatch(
+          actionFetchProductInCartByUserID(
+            JSON.parse(localStorage.getItem(user_login)).id
+          )
+        );
       })
       .catch((err) => {
-        console.log(err);
+        return toast.error(err, {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 1000,
+          pauseOnHover: false,
+        });
       });
   };
 };
@@ -84,9 +98,18 @@ export const actionDeleteProductInCartRequest = (values) => {
     return Services.removeProductFromCart(values)
       .then((result) => {
         dispatch(CreateAction(Types.DELETE_PRODUCT_IN_CART, result.data));
+        return dispatch(
+          actionFetchProductInCartByUserID(
+            JSON.parse(localStorage.getItem(user_login)).id
+          )
+        );
       })
       .catch((err) => {
-        console.log(err);
+        return toast.error(err, {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 1000,
+          pauseOnHover: false,
+        });
       });
   };
 };

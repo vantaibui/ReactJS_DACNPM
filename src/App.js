@@ -1,7 +1,6 @@
 import React, { Fragment, Suspense, lazy } from "react";
 import "./App/Sass/Main.scss";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import routes from "./App/Routes";
 import Loading from "./App/Components/Loading";
 
 const HomeTemplate = lazy(() => import("./App/Templates/User"));
@@ -32,51 +31,6 @@ const RevenueStatistics = lazy(() =>
 );
 
 const App = () => {
-  let showRoutes = (routes) => {
-    console.log(routes);
-    let result;
-    if (routes.length > 0) {
-      result = routes.map((route, index) => {
-        let template;
-        if (route.path == "/") {
-          template = (
-            <HomeTemplate
-              exact={route.exact}
-              path={route.path}
-              Component={route.main}
-            />
-          );
-        } else if (route.path == "/admin") {
-          template = (
-            <AdminTemplate
-              exact={route.exact}
-              path={route.path}
-              Component={route.main}
-            />
-          );
-        } else if (route.path == "/seller") {
-          template = (
-            <SellerTemplate
-              exact={route.exact}
-              path={route.path}
-              Component={route.main}
-            />
-          );
-        } else {
-          template = (
-            <Route
-              exact={route.exact}
-              path={route.path}
-              component={route.component}
-            />
-          );
-        }
-        return template;
-      });
-    }
-    return result;
-  };
-
   return (
     <BrowserRouter>
       <Suspense fallback={<Loading />}>

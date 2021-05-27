@@ -50,7 +50,7 @@ const ResetPassPage = (props) => {
               <div className="authentication-form">
                 <div className="authentication-form__header">
                   <h3 className="authentication-form__heading">
-                    Quên nhập khâir
+                    Quên nhập khẩu
                   </h3>
                 </div>
                 <div className="authentication-form__form">

@@ -12,3 +12,6 @@ export * from "./Form";
 
 // Cart
 export * from "./Cart";
+
+// Revenue statistics
+export * from "./RevenueStatistics";

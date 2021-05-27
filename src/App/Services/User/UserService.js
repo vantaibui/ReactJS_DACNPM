@@ -18,22 +18,23 @@ export const register = (data) => {
   });
 };
 
-export const confirmOTP = (otp) => {
-  let Info = JSON.parse(localStorage.getItem("Register"));
+export const confirmOTP = (values) => {
+  // let Info = JSON.parse(localStorage.getItem("Register"));
   // console.log(JSON.parse(data).active === true);
-  let data = {
-    username: Info.username,
-    email: Info.email,
-    password: Info.password,
-    phone: Info.phone,
-    address: Info.address,
-    active: 1,
-    role: Info.role,
-  };
+  // let data = {
+  //   username: Info.username,
+  //   email: Info.email,
+  //   password: Info.password,
+  //   phone: Info.phone,
+  //   address: Info.address,
+  //   active: 1,
+  //   role: Info.role,
+  // };
   return axios({
-    url: `${domain}/register/validate?otpnum=${otp}`,
+    // url: `${domain}/register/validate?otpnum=${otp}`,
+    url: `${domain}/register/validate`,
     method: "POST",
-    data: data,
+    data: values,
   });
 };
 

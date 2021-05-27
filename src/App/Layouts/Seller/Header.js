@@ -21,11 +21,7 @@ const Header = (props) => {
         <img src={ImgAdmin} alt="img" />
         <div className="info">
           <h4>{credentials?.username}</h4>
-          <small>
-            {credentials?.roles.map((role) => {
-              return role.slice(5);
-            })}
-          </small>
+          <small>{credentials?.role}</small>
         </div>
       </div>
     </header>
