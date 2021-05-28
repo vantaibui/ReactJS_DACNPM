@@ -38,7 +38,7 @@ const SellerPage = (props) => {
 
   let role = JSON.parse(localStorage.getItem(user_login)).role;
 
-  if (role !== "ROLE_ADMIN") {
+  if (role !== "ROLE_SELLER") {
     return alert("Bạn không đủ quyền truy cập!"), (<Redirect to="/" />);
   }
 

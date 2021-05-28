@@ -7,9 +7,10 @@ import * as Actions from "../../../Redux/Actions";
 import Product from "./Product";
 
 const ProductManagePage = (props) => {
-  let { products, isDisplayForm } = props;
+  let { categories, products, isDisplayForm } = props;
 
   useEffect(() => {
+    props.fetchCategories();
     props.fetchProducts();
   }, []);
 
@@ -52,6 +53,16 @@ const ProductManagePage = (props) => {
           product={product}
           onDeleteProduct={onDeleteProduct}
         />
+      );
+    });
+  };
+
+  let renderOptionCategory = (categories) => {
+    return categories.map((category, index) => {
+      return (
+        <option style={{ textTransform: "uppercase" }} value={category.id}>
+          {category.name}
+        </option>
       );
     });
   };
@@ -163,14 +174,18 @@ const ProductManagePage = (props) => {
                     </div>
 
                     <div className="manage-form__group">
-                      <input
+                      <select
                         type="text"
                         className="manage-form__input"
                         placeholder="Danh mục sản phẩm"
                         name="category"
                         onChange={formik.handleChange}
                         value={formik.values.category}
-                      />
+                        as="select"
+                      >
+                        <option>Chọn danh mục</option>
+                        {renderOptionCategory(categories)}
+                      </select>
                       <div className="manage-form__check">
                         <i className="far fa-check-circle manage-form__check-icon" />
                       </div>
@@ -298,6 +313,7 @@ const ProductManagePage = (props) => {
 
 const mapStateToProps = (state) => {
   return {
+    categories: state.CategoryReducer.categories,
     products: state.ProductReducer.products,
     isDisplayForm: state.DisplayForm,
   };
@@ -305,6 +321,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    fetchCategories: () => {
+      return dispatch(Actions.actionFetchCategoriesRequest());
+    },
     fetchProducts: () => {
       return dispatch(Actions.actionFetchAllProductRequest());
     },

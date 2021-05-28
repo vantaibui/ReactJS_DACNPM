@@ -10,7 +10,7 @@ import ProductList from "../../Components/User/Product/Product/ProductList";
 import PaginationList from "../../Components/User/Pagination/PaginationList";
 
 const CategoryPage = (props) => {
-  let { categories, products } = props;
+  let { productsCategory, categories, products } = props;
 
   useEffect(() => {
     let id = props.match.params.id;
@@ -31,7 +31,7 @@ const CategoryPage = (props) => {
                 </div>
                 <div className="grid-column-8" style={{ flex: 1 }}>
                   {/* List product */}
-                  <ProductList products={products} />
+                  <ProductList products={productsCategory} />
                 </div>
               </div>
               {/* Pagination */}
@@ -46,6 +46,7 @@ const CategoryPage = (props) => {
 
 const mapStateToProps = (state) => {
   return {
+    productsCategory: state.CategoryReducer.products,
     categories: state.CategoryReducer.categories,
     products: state.CategoryReducer.products || [
       { name: "", description: "", price: "" },
